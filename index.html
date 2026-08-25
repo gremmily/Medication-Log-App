@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Med Log</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Med Log">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16181d" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Med%20Log%22%2C%22short_name%22%3A%22Med%20Log%22%2C%22start_url%22%3A%22.%2F%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%2316181d%22%2C%22theme_color%22%3A%22%2316181d%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAHc0lEQVR42u3d%2B09TZxzHcf%2BMTSTcQSigFqSh3IOtQqAOWgHBRhDKVVDRrIhlXJS6obEGlJuFTA1q2GK2OJUhUg0jIYgmQwMl8IMmMwFEfhg%2F4A9NzrqQOObUAb2c73P6%2Beb9F3Be8Dzn9Dxl0xebPRH6aJvwI0DAgYADAQcCDgQcCDgQcCDgQMCBgAMh4EDAgYADAQcCDgQcCDgQcCDgQMCBEHAg4EDAgYADAQcCDgQcCDgQcCDgQAg4EHAg4EDAgYADAQcCDgQcCDgQcCDgQAg4EHAg4EDAgYADAYfgipDE7MvIOVx%2B7JSutuG0vq6hUVulKywqS1EoRSFi4HC5fP1F%2BQXFnVe6nzwZW1pa4j4xs7NzDwdN584b0tIzgUP4xSXIDRdbzOYpbp0zNDRcdbLGf2socAiwsHBpc0vrwsJbzoYZf%2F7CuugAh6AqP1I5OWnm7DR9vz5I3asEDubz9g1q7zBy9p75%2BTdfa6uBg%2BESZcn9%2FQOcw%2BaCoRk4mKygsHR6eoZz8LS2dQIHY%2BnPNlksFs4pQ%2FPvB3B8pO1iyc1bvZxzh%2BD%2BAzg%2BLE2ZOTIyyjl9rPtTavcvwPGvjp%2FQzs3NczyN9f4WOCjm7uF36XI7x%2Fdoq04BB61i42V37%2FVxBGZ8%2FAWd5%2BvA4Zmbp5mw36NP26fqZA1wkKi%2BoXF5%2BR1HaYaGhoGD54JDwq5d7%2BFIDpHP910UR6pCOfTbMEd1ms4ZgIOfKo4c%2F%2BP1a47wPHxoAg5n96Wbp%2BFiC0d%2BZmdnKbxf6EI4pFEJP%2F18h2NkUhTpwOGkcg7k%2FT7%2BnGNnNEVlwOGMdDX1n3kHmOZQeJVQ4DjcfUL3HL5qMpk41qau%2FgxwOLBAiUJV9zjtG9PKsIWjvkEPHI5qZ0pF7qVXh29x1lj0Ua2rBQ6HlJB7YYXFexwrPhjCUVZ%2BFDjs%2FaZ4cHTqidurZTDqQ5WRDRz2LDT%2BwP7vnv1XBnOLy59LSzsl0cBhv2dcKp2ma%2FFTMtjyMfpkDI%2FP7ZObZ5C8xPh5Fh8sLsR9dF7pAg47FBCenF4zsBYZDG0%2BDhUUA4fNJ5uTSg82z6xdBhM%2BJs1TPn4i4LDtqxDUTWU3LOuVQX%2FzQeeAE5M4PAMlKcd6N8aCuI%2BFhYW4eBlwbLCQmMws%2FaiNMsguLs0trTiasMEi07QFnfO2y6DpY2LSLA6PBI51t9ndT1bYZi8WNBeX8opKnHhbd%2F47ZGnV9%2B0ug5SP9g4jDlKvO7FcozZMOkgGER93frnn6b0VONZ5UDG7seT6skNl8L75GBx8RGqrwQAOd59tyRU9jmbBu4%2B%2Bvv6dEdE0LwFRHN6i6HRdv9Nk8LW4XLvWExC4jezvJ0UcXkGRqrpHTpbhZB%2FLy8v1DY3E13RyONw8tn518h4vMpy2uExMTB7M09C%2FFSCHQ15s5EuGc3zcvXs%2FlswDcpZwSBSV%2FMpwtI9Ll9vcPfxYefC4idRWQ20wU8DhiM3H3Nx85QktWx9WEMKxS9NKRIbdfYyMjKYp8S81NvyAXCzTGBeo4bDL4nLzZu92sYTFVyOo4EjMbyYlwy4%2BLBZL49kmdl%2BnIoFji5dIbZgiiMOWxWV6eqagsJTptzBJ4AjbXUxTxoZ99PcPJMqSWX95mwSO3aVdxHGsy0d7h9HbN0gAZz5I4Mg6O0YZx9o3H4uLi6z8iy42cHgHRxd9v0Qcx1p8PH36LCPrgJCOl%2FKPIzQum76M%2F918%2FPDjbQqnW4WGIyL1KCs4PuWj6dwFQX6TBf84ojJq2cKxenF5%2BfJVSWmFUL8Ah38csTl6hnCs9jFoerwnSSHg780igCP7DFs4Vnx0dV8NCAwVsAwSOKQqHVsyrPdW0Zn1wmZBBUd4UhlDMnLOP9%2BemOcKMkjgEEnTWZGxV3vHd1uCi8gggcPDT5zfMUtfRmJ%2Bi%2BuwIPT4XFVrosziUNtryd7jriaDCo6EXANZGRmnh0VSpQvKoIIjOCaTpozkIz0e%2FmGuKYPQm2DWX1BSLEquv4vNbnRZFrRwRO2roSNDbTCL5RoXl0EIh7tPaM75FySeflb3%2Be%2BQQQatowlS1SneZcgK2ze7%2B4EFxRNv6boHfLEo6JyPTNcCBF0c1pvGgitvnC8jSz8aEpMJDdQPUkuV1U6WkVLZ6xUoAQU2vp8j8ZCTDjiV3bDEq5uAgLFv9pEXdTpaxsHmmbCkUghgD4ej%2F34oawYCwpNx%2BVnFsbL%2FcMT%2BVF5idPMMwrVnG8ff9y9RSjve36oNZomiElddIDjev0po4%2FNTjfHtLk2rV5AUl1xoOFaer0ftq9nA53Pqi1OJ%2BS3%2BYjkutmBxrP58PyHXoKo15XfOfeYd4P3fju0u7Q7bU7zFS4TL7Co4%2Fnm%2F0F8skirDk8usi05sdmNsjj46szYi9VhoXI53cAwurUvjQMCBgAMBBwIOBBwIOBBwIAQcCDgQcCDgQMCBgAMBBwIOBBwIOBACDgQcCDgQcCDgQMCBgAMBBwIOBBwIOPBTQMCBgAMBBwIOBBwIOBBwIOBAwIGAAyHgQMCBgAMBBwIOBBwIOBBwIOBALtZfzXEIj7ITR0wAAAAASUVORK5CYII%3D%22%2C%22sizes%22%3A%22180x180%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%22%7D%5D%7D">
+<style>
+:root{
+  --bg:#f4f5f7; --surface:#ffffff; --surface-2:#eef0f4; --border:#e0e3ea;
+  --text:#14161c; --muted:#697086; --accent:#2f6fed; --accent-soft:#e6eefd;
+  --accent-fg:#ffffff; --danger:#c0362c; --danger-soft:#fdeceb;
+  --shadow:0 1px 2px rgba(16,20,32,.06), 0 8px 24px rgba(16,20,32,.06);
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#16181d; --surface:#1f222a; --surface-2:#272b34; --border:#333845;
+    --text:#eef0f5; --muted:#98a0b3; --accent:#6ca8ff; --accent-soft:#20304a;
+    --accent-fg:#0d1220; --danger:#ff8b80; --danger-soft:#3a2320;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg); color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(70px + env(safe-area-inset-bottom));
+  overscroll-behavior-y:none;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.01em}
+
+/* ---------- layout ---------- */
+.topbar{
+  position:sticky; top:0; z-index:20;
+  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+}
+.topbar h1{font-size:21px}
+.topbar .sub{font-size:13px;color:var(--muted)}
+main{padding:16px 16px 24px; max-width:640px; margin:0 auto}
+.view{display:none}
+.view.active{display:block}
+.section{margin-bottom:26px}
+.section-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:0 2px 10px; font-size:12.5px; font-weight:650; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--muted);
+}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.quick{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.pill-btn{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:13px 14px; text-align:left; display:block; width:100%;
+  transition:transform .08s ease, background .15s ease;
+}
+.pill-btn:active{transform:scale(.975); background:var(--surface-2)}
+.pill-btn .nm{font-weight:600;font-size:15.5px;display:block;line-height:1.25;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pill-btn .ds{font-size:13px;color:var(--muted);display:block;margin-top:3px}
+.pill-btn .last{font-size:11.5px;color:var(--muted);display:block;margin-top:8px;
+  padding-top:8px;border-top:1px solid var(--border)}
+.pill-btn .last b{font-weight:600;color:var(--accent)}
+.swatch{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:7px;vertical-align:1px}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 16px;border-radius:12px;font-weight:600;font-size:15px;
+  background:var(--surface-2); color:var(--text); border:1px solid var(--border);
+  transition:transform .08s ease;
+}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:transparent}
+.btn.ghost{background:transparent;border-color:var(--border)}
+.btn.danger{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.btn.full{width:100%}
+.btn.sm{padding:8px 12px;font-size:13.5px;border-radius:10px}
+
+/* ---------- entry rows ---------- */
+.rows{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden}
+.row{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;
+  padding:13px 14px;border-top:1px solid var(--border);background:none}
+.row:first-child{border-top:none}
+.row:active{background:var(--surface-2)}
+.row .time{display:block;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted);
+  min-width:66px;padding-top:2px;flex-shrink:0}
+.row .body{display:block;flex:1;min-width:0}
+.row .nm{display:block;font-weight:600;font-size:15.5px;line-height:1.3}
+.row .ds{display:block;font-size:13.5px;color:var(--muted);margin-top:2px}
+.row .nt{display:block;font-size:13.5px;color:var(--muted);margin-top:6px;white-space:pre-wrap;
+  padding-left:9px;border-left:2px solid var(--border)}
+.row .chev{color:var(--muted);opacity:.5;flex-shrink:0;padding-top:3px}
+
+.daygroup{margin-bottom:16px}
+.dayhead{display:flex;justify-content:space-between;align-items:baseline;
+  margin:0 4px 7px;font-size:13.5px;font-weight:650}
+.dayhead span{font-weight:400;color:var(--muted);font-size:12.5px}
+
+.empty{text-align:center;padding:34px 20px;color:var(--muted);
+  border:1px dashed var(--border);border-radius:var(--radius);font-size:14.5px}
+.empty strong{display:block;color:var(--text);font-size:15.5px;margin-bottom:5px;font-weight:600}
+
+/* ---------- forms ---------- */
+label.f{display:block;margin-bottom:14px}
+label.f .lb{display:block;font-size:12.5px;font-weight:650;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+input[type=text],input[type=datetime-local],input[type=search],textarea,select{
+  width:100%;padding:12px 13px;border-radius:11px;border:1px solid var(--border);
+  background:var(--surface);font-size:16px;outline:none;appearance:none;
+}
+input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+textarea{min-height:78px;resize:vertical;line-height:1.4}
+
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{padding:7px 13px;border-radius:999px;border:1px solid var(--border);
+  background:var(--surface);font-size:13.5px;font-weight:550}
+.chip.on{background:var(--accent);color:var(--accent-fg);border-color:transparent}
+
+/* ---------- tab bar ---------- */
+nav.tabs{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;
+  padding:6px 0 calc(6px + env(safe-area-inset-bottom));
+  background:color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter:saturate(180%) blur(16px);
+  -webkit-backdrop-filter:saturate(180%) blur(16px);
+  border-top:1px solid var(--border);
+}
+nav.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:5px 0;color:var(--muted);font-size:10.5px;font-weight:600;letter-spacing:.01em}
+nav.tabs button.on{color:var(--accent)}
+nav.tabs svg{width:23px;height:23px}
+
+/* ---------- sheet ---------- */
+.scrim{position:fixed;inset:0;background:rgba(8,10,16,.45);z-index:40;opacity:0;
+  pointer-events:none;transition:opacity .2s ease}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--surface);
+  border-radius:20px 20px 0 0;border-top:1px solid var(--border);
+  padding:8px 18px calc(20px + env(safe-area-inset-bottom));
+  transform:translateY(102%);transition:transform .26s cubic-bezier(.32,.72,0,1);
+  max-height:92vh;overflow-y:auto;max-width:640px;margin:0 auto;
+  box-shadow:0 -8px 40px rgba(0,0,0,.18);
+}
+.sheet.open{transform:translateY(0)}
+.grab{width:38px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 14px}
+.sheet h2{font-size:18px;margin-bottom:16px}
+.sheet-actions{display:flex;gap:10px;margin-top:4px}
+.sheet-actions .btn{flex:1}
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed;left:50%;transform:translate(-50%,140%);
+  bottom:calc(84px + env(safe-area-inset-bottom));z-index:60;
+  background:#14161c;color:#fff;border-radius:13px;padding:11px 12px 11px 16px;
+  display:flex;align-items:center;gap:14px;font-size:14.5px;font-weight:500;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);transition:transform .26s cubic-bezier(.32,.72,0,1);
+  max-width:min(420px, calc(100vw - 32px));
+  pointer-events:none;   /* while hidden it sits over the tab bar — never eat taps */
+}
+.toast.show{pointer-events:auto}
+@media (prefers-color-scheme: dark){ .toast{background:#f0f2f7;color:#14161c} }
+.toast.show{transform:translate(-50%,0)}
+.toast button{color:var(--accent);font-weight:700;font-size:14.5px;padding:4px 8px;flex-shrink:0}
+@media (prefers-color-scheme: dark){ .toast button{color:#2f6fed} }
+
+.hint{font-size:13px;color:var(--muted);margin:8px 4px 0;line-height:1.45}
+.stat{display:flex;gap:20px;padding:14px}
+.stat div{flex:1}
+.stat .n{font-size:22px;font-weight:680;letter-spacing:-.02em}
+.stat .l{font-size:12px;color:var(--muted);margin-top:1px}
+.linkrow{display:flex;gap:16px;margin-top:10px;padding:0 4px;flex-wrap:wrap}
+.link{color:var(--accent);font-size:13.5px;font-weight:600;padding:4px 0}
+.link.danger{color:var(--danger)}
+
+/* ---------- sync ---------- */
+.topbar{display:block}
+.tbrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.syncchip{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+  border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:600;
+  color:var(--muted);white-space:nowrap;flex-shrink:0}
+.syncchip .dot{width:7px;height:7px;border-radius:50%;background:var(--muted);flex-shrink:0}
+.syncchip.ok .dot{background:#16a34a} .syncchip.ok{color:#16a34a;border-color:#16a34a33}
+.syncchip.err .dot{background:var(--danger)} .syncchip.err{color:var(--danger);border-color:#c0362c33}
+.syncchip.busy .dot{background:var(--accent);animation:pulse 1.1s ease-in-out infinite}
+.syncchip.busy{color:var(--accent);border-color:#2f6fed33}
+.syncchip.wait .dot{background:#d97706} .syncchip.wait{color:#d97706;border-color:#d9770633}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media (prefers-color-scheme: dark){
+  .syncchip.ok{color:#4ade80;border-color:#4ade8033} .syncchip.ok .dot{background:#4ade80}
+  .syncchip.wait{color:#fbbf24;border-color:#fbbf2433} .syncchip.wait .dot{background:#fbbf24}
+}
+.synccard{padding:15px}
+.synccard .line{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:6px 0}
+.synccard .line span:first-child{color:var(--muted)}
+.synccard .line span:last-child{font-weight:600;text-align:right;word-break:break-all}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;
+  background:var(--surface-2);padding:1px 5px;border-radius:5px}
+.warn{background:var(--danger-soft);color:var(--danger);border-radius:11px;padding:11px 13px;
+  font-size:13px;line-height:1.45;margin:12px 0 0;font-weight:500}
+.steps{font-size:13.5px;color:var(--muted);line-height:1.55;padding-left:19px;margin:2px 0 16px}
+.steps li{margin-bottom:5px}
+.steps a{color:var(--accent)}
+
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="tbrow">
+    <h1 id="viewTitle">Today</h1>
+    <button class="syncchip" id="syncChip"><i class="dot"></i><span id="syncChipText">Local only</span></button>
+  </div>
+  <div class="sub" id="viewSub"></div>
+</div>
+
+<main>
+  <!-- ============ TODAY ============ -->
+  <section class="view active" id="view-today">
+    <div class="section" id="quickSection">
+      <div class="section-head"><span>Quick log</span><span id="quickHint">tap to log now</span></div>
+      <div class="quick" id="quickGrid"></div>
+    </div>
+
+    <div class="section">
+      <button class="btn full ghost" id="btnNewEntry">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Log a dose
+      </button>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span>Today</span><span id="todayCount"></span></div>
+      <div id="todayList"></div>
+    </div>
+  </section>
+
+  <!-- ============ HISTORY ============ -->
+  <section class="view" id="view-history">
+    <div class="section">
+      <input type="search" id="search" placeholder="Search medication or notes" autocomplete="off">
+      <div class="chips" style="margin-top:11px">
+        <button class="chip on" data-range="7">7 days</button>
+        <button class="chip" data-range="30">30 days</button>
+        <button class="chip" data-range="90">90 days</button>
+        <button class="chip" data-range="all">All</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <button class="btn full primary" id="btnExport">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7.5 10.5 12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <span id="exportLabel">Export CSV</span>
+      </button>
+      <p class="hint">Exports exactly what's shown below. Opens in Excel, Numbers or Google Sheets.</p>
+    </div>
+
+    <div class="section" id="historyList"></div>
+  </section>
+
+  <!-- ============ MEDS ============ -->
+  <section class="view" id="view-meds">
+    <div class="section">
+      <div class="section-head"><span>My medications</span><span id="medCount"></span></div>
+      <div id="medList"></div>
+      <button class="btn full ghost" id="btnNewMed" style="margin-top:11px">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Add a medication
+      </button>
+      <p class="hint">Saved medications show up as one-tap buttons on the Today screen.</p>
+    </div>
+
+    <!-- sync -->
+    <div class="section">
+      <div class="section-head"><span>Backup &amp; sync</span></div>
+      <div class="card synccard" id="syncCard"></div>
+      <div class="linkrow" id="syncLinks"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span>Data</span></div>
+      <div class="card stat">
+        <div><div class="n" id="statEntries">0</div><div class="l">doses logged</div></div>
+        <div><div class="n" id="statDays">0</div><div class="l">days tracked</div></div>
+        <div><div class="n" id="statFirst">—</div><div class="l">first entry</div></div>
+      </div>
+      <div class="linkrow">
+        <button class="link" id="btnBackup">Save backup file</button>
+        <button class="link" id="btnRestore">Restore from backup</button>
+        <button class="link danger" id="btnWipe">Erase all data</button>
+      </div>
+      <p class="hint">A manual backup file works whether or not sync is switched on — worth keeping one somewhere separate.</p>
+      <input type="file" id="restoreFile" accept="application/json,.json" style="display:none">
+    </div>
+  </section>
+</main>
+
+<nav class="tabs">
+  <button data-tab="today" class="on">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="12" cy="15.5" r="1.6" fill="currentColor" stroke="none"/></svg>
+    Today
+  </button>
+  <button data-tab="history">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></svg>
+    History
+  </button>
+  <button data-tab="meds">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="8.6" width="18.8" height="6.8" rx="3.4" transform="rotate(-45 12 12)"/><path d="M9.2 9.2l5.6 5.6"/></svg>
+    Meds
+  </button>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+
+<!-- entry sheet -->
+<div class="sheet" id="entrySheet">
+  <div class="grab"></div>
+  <h2 id="entryTitle">Log a dose</h2>
+  <label class="f"><span class="lb">Medication</span>
+    <input type="text" id="fName" list="medNames" autocomplete="off" autocapitalize="words" placeholder="e.g. Metformin">
+    <datalist id="medNames"></datalist>
+  </label>
+  <label class="f"><span class="lb">Dosage</span>
+    <input type="text" id="fDose" autocomplete="off" placeholder="e.g. 500 mg — 1 tablet">
+  </label>
+  <label class="f"><span class="lb">Date &amp; time taken</span>
+    <input type="datetime-local" id="fWhen">
+  </label>
+  <label class="f"><span class="lb">Notes</span>
+    <textarea id="fNotes" placeholder="Optional — with food, side effects, missed dose…"></textarea>
+  </label>
+  <div class="sheet-actions">
+    <button class="btn ghost" id="entryCancel">Cancel</button>
+    <button class="btn primary" id="entrySave">Save</button>
+  </div>
+  <div class="sheet-actions" id="entryDeleteWrap" style="display:none">
+    <button class="btn danger full" id="entryDelete">Delete this entry</button>
+  </div>
+</div>
+
+<!-- med sheet -->
+<div class="sheet" id="medSheet">
+  <div class="grab"></div>
+  <h2 id="medTitle">Add a medication</h2>
+  <label class="f"><span class="lb">Name</span>
+    <input type="text" id="mName" autocapitalize="words" autocomplete="off" placeholder="e.g. Levothyroxine">
+  </label>
+  <label class="f"><span class="lb">Usual dosage</span>
+    <input type="text" id="mDose" autocomplete="off" placeholder="e.g. 75 mcg — 1 tablet">
+  </label>
+  <div class="sheet-actions">
+    <button class="btn ghost" id="medCancel">Cancel</button>
+    <button class="btn primary" id="medSave">Save</button>
+  </div>
+  <div class="sheet-actions" id="medDeleteWrap" style="display:none">
+    <button class="btn danger full" id="medDelete">Remove from my list</button>
+  </div>
+  <p class="hint" id="medDeleteHint" style="display:none">Removing it here won't delete any doses you've already logged.</p>
+</div>
+
+<!-- sync sheet -->
+<div class="sheet" id="syncSheet">
+  <div class="grab"></div>
+  <h2>Sync with GitHub</h2>
+  <p class="hint" style="margin:0 0 14px">Your log is kept in a JSON file in a private repository. Every device with these details stays in step, and GitHub keeps a full version history of every change.</p>
+  <ol class="steps">
+    <li>Create a <b>private</b> repo — <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>. An empty one is fine.</li>
+    <li>Make a fine-grained token at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Settings → Developer settings → Personal access tokens → Fine-grained</a>.</li>
+    <li>Under <b>Repository access</b> pick only that repo. Under <b>Permissions → Repository permissions</b> set <b>Contents</b> to <b>Read and write</b>. Nothing else.</li>
+    <li>Copy the token and paste it below.</li>
+  </ol>
+  <label class="f"><span class="lb">Repository</span>
+    <input type="text" id="sRepo" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="your-username/med-log-data">
+  </label>
+  <label class="f"><span class="lb">Branch</span>
+    <input type="text" id="sBranch" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="main">
+  </label>
+  <label class="f"><span class="lb">File path</span>
+    <input type="text" id="sPath" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="med-log.json">
+  </label>
+  <label class="f"><span class="lb">Access token</span>
+    <input type="text" id="sToken" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="github_pat_…">
+  </label>
+  <p class="warn">The token is stored on this device only, and gives access to that one repository. Anyone who can unlock this phone could read it. Use a token scoped to a single private repo — never one with wider access — and revoke it on GitHub if the device is lost.</p>
+  <div class="sheet-actions" style="margin-top:14px">
+    <button class="btn ghost" id="syncCancel">Cancel</button>
+    <button class="btn primary" id="syncSave">Connect</button>
+  </div>
+  <div class="sheet-actions" id="syncOffWrap" style="display:none">
+    <button class="btn danger full" id="syncOff">Turn off sync on this device</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span id="toastMsg"></span><button id="toastAction" style="display:none"></button></div>
+<script>
+(function(){
+"use strict";
+
+/* ============================ constants ============================ */
+var KEY      = "medlog.v1";
+var SYNC_KEY = "medlog.sync";
+var GH       = "https://api.github.com";
+
+var db  = { version: 2, meds: [], entries: [] };
+var cfg = null;                 // {repo, branch, path, token} — never synced
+var storageOK = true;
+
+/* ============================ tiny helpers ============================ */
+function $(id){ return document.getElementById(id); }
+function uid(){ return Math.random().toString(36).slice(2,9) + Date.now().toString(36); }
+function now(){ return Date.now(); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+
+function dayKey(ms){
+  var d = new Date(ms);
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+function fmtTime(ms){ return new Date(ms).toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}); }
+function fmtDate(ms){ return new Date(ms).toLocaleDateString([], {year:"numeric", month:"short", day:"numeric"}); }
+function dayLabel(ms){
+  var t = dayKey(now()), y = dayKey(now()-864e5), k = dayKey(ms);
+  if(k===t) return "Today";
+  if(k===y) return "Yesterday";
+  return new Date(ms).toLocaleDateString([], {weekday:"short", month:"short", day:"numeric",
+    year: new Date(ms).getFullYear()===new Date().getFullYear() ? undefined : "numeric"});
+}
+function relTime(ms){
+  var s = Math.floor((now()-ms)/1000);
+  if(s < 45) return "just now";
+  var m = Math.floor(s/60); if(m < 60) return m + (m===1?" min ago":" mins ago");
+  var h = Math.floor(m/60); if(h < 24) return h + (h===1?" hr ago":" hrs ago");
+  var d = Math.floor(h/24); if(d < 7) return d + (d===1?" day ago":" days ago");
+  return fmtDate(ms);
+}
+function toLocalInput(ms){
+  return new Date(ms - new Date(ms).getTimezoneOffset()*60000).toISOString().slice(0,16);
+}
+function fromLocalInput(v){ var t = new Date(v).getTime(); return isNaN(t) ? now() : t; }
+
+var HUES = ["#2f6fed","#12a594","#c2410c","#7c3aed","#b91c60","#0891b2","#65a30d","#a16207"];
+function colorFor(name){
+  var h = 0, s = String(name||"").toLowerCase();
+  for(var i=0;i<s.length;i++) h = (h*31 + s.charCodeAt(i)) >>> 0;
+  return HUES[h % HUES.length];
+}
+
+/* ============================ storage ============================ */
+function load(){
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(raw){
+      var p = JSON.parse(raw);
+      if(p && Array.isArray(p.meds) && Array.isArray(p.entries)) db = p;
+    }
+  }catch(e){ storageOK = false; }
+  // migrate records written before sync existed
+  db.version = 2;
+  db.meds.forEach(function(m){ if(!m.updatedAt) m.updatedAt = m.when || 1; });
+  db.entries.forEach(function(e){ if(!e.updatedAt) e.updatedAt = e.when || 1; });
+  try{
+    var sraw = localStorage.getItem(SYNC_KEY);
+    if(sraw){
+      var c = JSON.parse(sraw);
+      if(c && c.repo && c.token) cfg = c;
+    }
+  }catch(e){}
+}
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(db)); }
+  catch(e){ storageOK = false; toast("Couldn't save — device storage is full or blocked"); }
+}
+function saveCfg(){
+  try{
+    if(cfg) localStorage.setItem(SYNC_KEY, JSON.stringify(cfg));
+    else localStorage.removeItem(SYNC_KEY);
+  }catch(e){}
+}
+
+/* records marked deleted are tombstones: kept so the deletion reaches other devices */
+function liveMeds(){ return db.meds.filter(function(m){ return !m.deleted; }); }
+function liveEntries(){ return db.entries.filter(function(e){ return !e.deleted; }); }
+
+/* every local change bumps updatedAt and schedules a push */
+function changed(){ save(); render(); markDirty(); }
+
+/* ============================ toast ============================ */
+var toastTimer = null;
+function toast(msg, actionLabel, actionFn){
+  var el = $("toast"), btn = $("toastAction");
+  $("toastMsg").textContent = msg;
+  if(actionLabel){
+    btn.style.display = "";
+    btn.textContent = actionLabel;
+    btn.onclick = function(){ hideToast(); actionFn && actionFn(); };
+  } else { btn.style.display = "none"; btn.onclick = null; }
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(hideToast, actionLabel ? 5200 : 2600);
+}
+function hideToast(){ $("toast").classList.remove("show"); clearTimeout(toastTimer); }
+
+/* ============================ sheets ============================ */
+function openSheet(id){
+  $("scrim").classList.add("open"); $(id).classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeSheets(){
+  $("scrim").classList.remove("open");
+  ["entrySheet","medSheet","syncSheet"].forEach(function(s){ $(s).classList.remove("open"); });
+  document.body.style.overflow = "";
+}
+$("scrim").addEventListener("click", closeSheets);
+
+/* ============================ tabs ============================ */
+var TITLES = { today:"Today", history:"History", meds:"Medications" };
+var currentTab = "today";
+function setTab(tab){
+  currentTab = tab;
+  document.querySelectorAll(".view").forEach(function(v){ v.classList.remove("active"); });
+  $("view-" + tab).classList.add("active");
+  document.querySelectorAll("nav.tabs button").forEach(function(b){ b.classList.toggle("on", b.dataset.tab === tab); });
+  $("viewTitle").textContent = TITLES[tab];
+  $("viewSub").textContent = tab === "today" ? fmtDate(now()) : "";
+  window.scrollTo(0,0);
+  render();
+}
+document.querySelectorAll("nav.tabs button").forEach(function(b){
+  b.addEventListener("click", function(){ setTab(b.dataset.tab); });
+});
+
+/* ============================ entries ============================ */
+function addEntry(name, dose, when, notes){
+  var e = { id: uid(), name: name, dose: dose, when: when, notes: notes || "", updatedAt: now() };
+  db.entries.push(e); changed();
+  return e;
+}
+function tombstone(rec){ rec.deleted = true; rec.updatedAt = now(); changed(); }
+function revive(rec){ delete rec.deleted; rec.updatedAt = now(); changed(); }
+
+function logNow(med){
+  var e = addEntry(med.name, med.dose || "", now(), "");
+  if(navigator.vibrate) try{ navigator.vibrate(12); }catch(err){}
+  toast(med.name + " logged at " + fmtTime(e.when), "Undo", function(){
+    tombstone(e); toast("Removed");
+  });
+}
+
+/* ============================ entry sheet ============================ */
+var editingEntry = null;
+function openEntry(entry){
+  editingEntry = entry || null;
+  $("entryTitle").textContent = entry ? "Edit entry" : "Log a dose";
+  $("fName").value  = entry ? entry.name  : "";
+  $("fDose").value  = entry ? entry.dose  : "";
+  $("fWhen").value  = toLocalInput(entry ? entry.when : now());
+  $("fNotes").value = entry ? entry.notes : "";
+  $("entryDeleteWrap").style.display = entry ? "" : "none";
+  openSheet("entrySheet");
+  if(!entry) setTimeout(function(){ $("fName").focus(); }, 260);
+}
+$("btnNewEntry").addEventListener("click", function(){ openEntry(null); });
+$("entryCancel").addEventListener("click", closeSheets);
+$("entrySave").addEventListener("click", function(){
+  var name = $("fName").value.trim();
+  if(!name){ $("fName").focus(); toast("Give the medication a name"); return; }
+  var known = liveMeds().find(function(x){ return x.name.toLowerCase() === name.toLowerCase(); });
+  if(known) name = known.name;
+  var dose = $("fDose").value.trim(), when = fromLocalInput($("fWhen").value), notes = $("fNotes").value.trim();
+  if(editingEntry){
+    editingEntry.name = name; editingEntry.dose = dose;
+    editingEntry.when = when; editingEntry.notes = notes; editingEntry.updatedAt = now();
+    changed(); closeSheets(); toast("Entry updated");
+  } else {
+    addEntry(name, dose, when, notes); closeSheets(); toast(name + " logged");
+  }
+});
+$("entryDelete").addEventListener("click", function(){
+  if(!editingEntry) return;
+  var rec = editingEntry;
+  tombstone(rec); closeSheets();
+  toast("Entry deleted", "Undo", function(){ revive(rec); });
+});
+$("fName").addEventListener("change", function(){
+  if($("fDose").value.trim()) return;
+  var v = $("fName").value.trim().toLowerCase();
+  var m = liveMeds().find(function(x){ return x.name.toLowerCase() === v; });
+  if(m) $("fDose").value = m.dose || "";
+});
+
+/* ============================ med sheet ============================ */
+var editingMed = null;
+function openMed(med){
+  editingMed = med || null;
+  $("medTitle").textContent = med ? "Edit medication" : "Add a medication";
+  $("mName").value = med ? med.name : "";
+  $("mDose").value = med ? med.dose : "";
+  $("medDeleteWrap").style.display = med ? "" : "none";
+  $("medDeleteHint").style.display = med ? "" : "none";
+  openSheet("medSheet");
+  if(!med) setTimeout(function(){ $("mName").focus(); }, 260);
+}
+$("btnNewMed").addEventListener("click", function(){ openMed(null); });
+$("medCancel").addEventListener("click", closeSheets);
+$("medSave").addEventListener("click", function(){
+  var name = $("mName").value.trim();
+  if(!name){ $("mName").focus(); toast("Give the medication a name"); return; }
+  var dose = $("mDose").value.trim();
+  if(editingMed){ editingMed.name = name; editingMed.dose = dose; editingMed.updatedAt = now(); }
+  else { db.meds.push({ id: uid(), name: name, dose: dose, updatedAt: now() }); }
+  changed(); closeSheets();
+  toast(editingMed ? "Saved" : name + " added");
+});
+$("medDelete").addEventListener("click", function(){
+  if(!editingMed) return;
+  var rec = editingMed;
+  tombstone(rec); closeSheets();
+  toast(rec.name + " removed", "Undo", function(){ revive(rec); });
+});
+
+/* ======================================================================
+   SYNC — a JSON file in a private GitHub repo is the shared source of
+   truth. Records carry updatedAt and deletion tombstones, so two devices
+   merge cleanly: newest edit per record wins, deletions travel too.
+   ====================================================================== */
+
+var sync = { phase: cfgPhase(), lastSync: null, pending: false, msg: "", running: false, queued: false };
+function cfgPhase(){ return "off"; }
+
+function b64enc(str){
+  var bytes = new TextEncoder().encode(str), bin = "";
+  for(var i=0;i<bytes.length;i++) bin += String.fromCharCode(bytes[i]);
+  return btoa(bin);
+}
+function b64dec(b64){
+  var bin = atob(String(b64).replace(/\s/g, ""));
+  var bytes = new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+function repoParts(){
+  var bits = String(cfg.repo).trim().replace(/^https?:\/\/github\.com\//,"").replace(/\.git$/,"").split("/");
+  return { owner: bits[0] || "", name: bits[1] || "" };
+}
+function contentsUrl(){
+  var p = repoParts();
+  var path = String(cfg.path).split("/").filter(Boolean).map(encodeURIComponent).join("/");
+  return GH + "/repos/" + encodeURIComponent(p.owner) + "/" + encodeURIComponent(p.name) + "/contents/" + path;
+}
+function ghHeaders(){
+  return {
+    "Authorization": "Bearer " + cfg.token,
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28"
+  };
+}
+function SyncError(msg, kind){ var e = new Error(msg); e.kind = kind || "error"; return e; }
+
+async function describeFailure(res){
+  if(res.status === 401) return SyncError("Token rejected — it may have expired or been revoked");
+  if(res.status === 403){
+    if(res.headers.get("X-RateLimit-Remaining") === "0") return SyncError("GitHub rate limit reached — try again shortly", "wait");
+    return SyncError("Access denied — the token needs Contents: Read and write on this repo");
+  }
+  if(res.status === 404) return SyncError("Repository or branch not found — check the name and the token's access");
+  var body = "";
+  try{ body = (await res.json()).message || ""; }catch(e){}
+  return SyncError("GitHub said: " + (body || res.status));
+}
+
+/* read the remote file. returns {sha, data} | {missing:true} */
+async function pull(){
+  var url = contentsUrl() + "?ref=" + encodeURIComponent(cfg.branch) + "&nocache=" + now();
+  var res;
+  try{ res = await fetch(url, { headers: ghHeaders(), cache: "no-store" }); }
+  catch(e){ throw SyncError("No connection", "offline"); }
+
+  if(res.status === 404){
+    // the file may simply not exist yet — check the repo itself before blaming it
+    var p = repoParts();
+    var rres = await fetch(GH + "/repos/" + encodeURIComponent(p.owner) + "/" + encodeURIComponent(p.name),
+                           { headers: ghHeaders(), cache: "no-store" });
+    if(rres.ok) return { missing: true };
+    throw await describeFailure(rres);
+  }
+  if(!res.ok) throw await describeFailure(res);
+
+  var j = await res.json();
+  var data;
+  try{ data = JSON.parse(b64dec(j.content)); }
+  catch(e){ throw SyncError("The file in the repo isn't readable Med Log data — move it aside and let the app recreate it"); }
+  if(!data || !Array.isArray(data.meds) || !Array.isArray(data.entries))
+    throw SyncError("The file in the repo isn't Med Log data — point the app at a different path");
+  return { sha: j.sha, data: data };
+}
+
+/* write the remote file. returns new sha, or null on a stale-sha conflict */
+async function push(payload, sha){
+  var body = { message: payload.meds.length + " meds, " + payload.entries.length + " entries — "
+                        + new Date().toISOString().slice(0,16).replace("T"," "),
+               content: b64enc(JSON.stringify(payload, null, 2)),
+               branch: cfg.branch };
+  if(sha) body.sha = sha;
+  var res;
+  try{
+    res = await fetch(contentsUrl(), { method: "PUT", headers: ghHeaders(), body: JSON.stringify(body) });
+  }catch(e){ throw SyncError("No connection", "offline"); }
+
+  if(res.status === 409 || res.status === 422) return null;   // someone else wrote first
+  if(!res.ok) throw await describeFailure(res);
+  var j = await res.json();
+  return j.content && j.content.sha;
+}
+
+/* newest-wins union by id */
+function mergeById(mine, theirs){
+  var byId = Object.create(null);
+  function put(r){
+    if(!r || !r.id) return;
+    var cur = byId[r.id];
+    if(!cur || (r.updatedAt||0) > (cur.updatedAt||0)) byId[r.id] = r;
+  }
+  mine.forEach(put); theirs.forEach(put);
+  return Object.keys(byId).map(function(k){ return byId[k]; });
+}
+function buildPayload(meds, entries){
+  return {
+    app: "med-log", version: 2,
+    meds:    meds.slice().sort(function(a,b){ return String(a.name).localeCompare(String(b.name)); }),
+    entries: entries.slice().sort(function(a,b){ return a.when - b.when; })
+  };
+}
+function sameContent(a, b){
+  return JSON.stringify([a.meds, a.entries]) === JSON.stringify([b.meds, b.entries]);
+}
+
+async function syncNow(opts){
+  opts = opts || {};
+  if(!cfg){ setSync("off"); return; }
+  if(sync.running){ sync.queued = true; return; }
+  sync.running = true;
+  setSync("syncing");
+
+  try{
+    var attempt = 0, done = false;
+    while(attempt < 3 && !done){
+      attempt++;
+      var remote  = await pull();
+      var theirs  = remote.missing ? { meds: [], entries: [] } : remote.data;
+      var payload = buildPayload(mergeById(db.meds, theirs.meds), mergeById(db.entries, theirs.entries));
+
+      // adopt the merged result locally first, so a failed push never loses their edits
+      db.meds = payload.meds; db.entries = payload.entries; save(); render();
+
+      if(!remote.missing && sameContent(payload, theirs)){ done = true; break; }   // nothing to send
+      var newSha = await push(payload, remote.sha);
+      if(newSha) done = true;                                                       // else: conflict, loop and re-merge
+    }
+    if(!done) throw SyncError("Couldn't settle a conflict after three tries — try again in a moment", "wait");
+
+    sync.pending = false;
+    sync.lastSync = now();
+    try{ localStorage.setItem("medlog.lastsync", String(sync.lastSync)); }catch(e){}
+    setSync("idle");
+    if(opts.manual) toast("Synced");
+  }catch(err){
+    var kind = err.kind === "offline" ? "offline" : (err.kind === "wait" ? "wait" : "error");
+    sync.msg = err.message || "Sync failed";
+    setSync(kind);
+    if(opts.manual) toast(sync.msg);
+  }finally{
+    sync.running = false;
+    if(sync.queued){ sync.queued = false; setTimeout(function(){ syncNow(); }, 400); }
+  }
+}
+
+function setSync(phase){ sync.phase = phase; renderSync(); }
+
+var dirtyTimer = null;
+function markDirty(){
+  if(!cfg) return;
+  sync.pending = true;
+  renderSync();
+  clearTimeout(dirtyTimer);
+  dirtyTimer = setTimeout(function(){ syncNow(); }, 2500);
+}
+
+/* ---------- sync UI ---------- */
+var CHIP = {
+  off:     { cls: "",     text: "Local only" },
+  idle:    { cls: "ok",   text: "Synced" },
+  syncing: { cls: "busy", text: "Syncing…" },
+  offline: { cls: "wait", text: "Offline" },
+  wait:    { cls: "wait", text: "Retrying" },
+  error:   { cls: "err",  text: "Sync error" }
+};
+function renderSync(){
+  var chip = $("syncChip"), s = CHIP[sync.phase] || CHIP.off;
+  chip.className = "syncchip " + s.cls;
+  var label = s.text;
+  if(sync.phase === "idle" && sync.pending) label = "Pending";
+  if(sync.phase === "idle" && !sync.pending && sync.lastSync) label = "Synced";
+  $("syncChipText").textContent = label;
+  renderSyncCard();
+}
+function renderSyncCard(){
+  var card = $("syncCard"), links = $("syncLinks");
+  if(!cfg){
+    card.innerHTML = '<div style="font-weight:600;margin-bottom:5px">Not syncing</div>' +
+      '<div style="font-size:13.5px;color:var(--muted);line-height:1.5">Your log lives only in this browser. ' +
+      'Connect a private GitHub repo to keep an off-device copy with full version history, and to use the app from your computer too.</div>';
+    links.innerHTML = '<button class="link" id="btnSyncSetup">Set up sync</button>';
+    $("btnSyncSetup").onclick = function(){ openSyncSheet(); };
+    return;
+  }
+  var p = repoParts();
+  var statusText = { off:"Off", idle: sync.pending ? "Changes pending" : "Up to date",
+                     syncing:"Syncing…", offline:"Offline — will retry", wait:"Waiting to retry",
+                     error: sync.msg || "Error" }[sync.phase];
+  card.innerHTML =
+    '<div class="line"><span>Status</span><span>' + esc(statusText) + '</span></div>' +
+    '<div class="line"><span>Repository</span><span>' + esc(p.owner + "/" + p.name) + '</span></div>' +
+    '<div class="line"><span>File</span><span>' + esc(cfg.branch + " / " + cfg.path) + '</span></div>' +
+    '<div class="line"><span>Last synced</span><span>' + (sync.lastSync ? esc(relTime(sync.lastSync)) : "never") + '</span></div>';
+  links.innerHTML = '<button class="link" id="btnSyncNow">Sync now</button>' +
+                    '<button class="link" id="btnSyncEdit">Change settings</button>';
+  $("btnSyncNow").onclick  = function(){ syncNow({manual:true}); };
+  $("btnSyncEdit").onclick = function(){ openSyncSheet(); };
+}
+function openSyncSheet(){
+  $("sRepo").value   = cfg ? cfg.repo   : "";
+  $("sBranch").value = cfg ? cfg.branch : "main";
+  $("sPath").value   = cfg ? cfg.path   : "med-log.json";
+  $("sToken").value  = cfg ? cfg.token  : "";
+  $("syncOffWrap").style.display = cfg ? "" : "none";
+  openSheet("syncSheet");
+}
+$("syncChip").addEventListener("click", function(){
+  if(!cfg){ setTab("meds"); openSyncSheet(); return; }
+  setTab("meds");
+  if(sync.phase === "error" || sync.phase === "offline") syncNow({manual:true});
+});
+$("syncCancel").addEventListener("click", closeSheets);
+$("syncSave").addEventListener("click", async function(){
+  var repo = $("sRepo").value.trim().replace(/^\/+|\/+$/g,"");
+  var token = $("sToken").value.trim();
+  if(repo.split("/").filter(Boolean).length !== 2){ toast("Repository should look like username/repo-name"); return; }
+  if(!token){ toast("Paste your access token"); return; }
+  cfg = { repo: repo, branch: $("sBranch").value.trim() || "main",
+          path: ($("sPath").value.trim() || "med-log.json").replace(/^\/+/,""), token: token };
+  saveCfg();
+  closeSheets();
+  await syncNow({manual:true});
+  if(sync.phase === "idle") toast("Sync is on — this device is connected");
+});
+$("syncOff").addEventListener("click", function(){
+  if(!confirm("Stop syncing on this device?\n\nYour log stays here and the copy in GitHub stays there — they just stop talking to each other.")) return;
+  cfg = null; saveCfg(); sync.lastSync = null; sync.pending = false;
+  setSync("off"); closeSheets(); toast("Sync turned off on this device");
+});
+
+/* ============================ history filters ============================ */
+var range = "7";
+document.querySelectorAll(".chip[data-range]").forEach(function(c){
+  c.addEventListener("click", function(){
+    range = c.dataset.range;
+    document.querySelectorAll(".chip[data-range]").forEach(function(x){ x.classList.remove("on"); });
+    c.classList.add("on");
+    render();
+  });
+});
+$("search").addEventListener("input", render);
+
+function filtered(){
+  var q = $("search").value.trim().toLowerCase();
+  var cutoff = range === "all" ? -Infinity : now() - parseInt(range,10)*864e5;
+  return liveEntries()
+    .filter(function(e){ return e.when >= cutoff; })
+    .filter(function(e){ return !q || (e.name+" "+e.dose+" "+e.notes).toLowerCase().indexOf(q) !== -1; })
+    .sort(function(a,b){ return b.when - a.when; });
+}
+
+/* ============================ CSV export ============================ */
+function csvCell(v){ return '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"'; }
+function buildCSV(list){
+  var lines = [["Date","Time","Medication","Dosage","Notes","Timestamp (ISO 8601)"].map(csvCell).join(",")];
+  list.slice().sort(function(a,b){ return a.when - b.when; }).forEach(function(e){
+    var d = new Date(e.when);
+    lines.push([
+      dayKey(e.when),
+      d.toLocaleTimeString([], {hour12:false, hour:"2-digit", minute:"2-digit"}),
+      e.name, e.dose, e.notes,
+      new Date(e.when - d.getTimezoneOffset()*60000).toISOString().slice(0,19)
+    ].map(csvCell).join(","));
+  });
+  return "﻿" + lines.join("\r\n") + "\r\n";
+}
+function downloadFile(text, filename, mime){
+  var url = URL.createObjectURL(new Blob([text], { type: mime }));
+  var a = document.createElement("a");
+  a.href = url; a.download = filename; a.rel = "noopener";
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 1500);
+}
+$("btnExport").addEventListener("click", function(){
+  var list = filtered();
+  if(!list.length){ toast("Nothing to export in this view"); return; }
+  downloadFile(buildCSV(list), "med-log-" + dayKey(now()) + ".csv", "text/csv;charset=utf-8;");
+  toast("Exported " + list.length + (list.length===1?" entry":" entries"));
+});
+
+/* ============================ backup / restore / wipe ============================ */
+$("btnBackup").addEventListener("click", function(){
+  downloadFile(JSON.stringify(buildPayload(db.meds, db.entries), null, 2),
+               "med-log-backup-" + dayKey(now()) + ".json", "application/json");
+  toast("Backup saved");
+});
+$("btnRestore").addEventListener("click", function(){ $("restoreFile").click(); });
+$("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0];
+  if(!f) return;
+  var r = new FileReader();
+  r.onload = function(){
+    try{
+      var p = JSON.parse(r.result);
+      if(!p || !Array.isArray(p.meds) || !Array.isArray(p.entries)) throw new Error("bad");
+      var liveIn = p.entries.filter(function(e){ return !e.deleted; }).length;
+      if(!confirm("Merge this backup into the app?\n\n" + liveIn + " entries, " +
+                  p.meds.filter(function(m){ return !m.deleted; }).length + " medications\n\n" +
+                  "Nothing already here is lost — matching records keep whichever version is newer.")) return;
+      p.meds.forEach(function(m){ if(!m.updatedAt) m.updatedAt = 1; });
+      p.entries.forEach(function(e){ if(!e.updatedAt) e.updatedAt = e.when || 1; });
+      db.meds    = mergeById(db.meds, p.meds);
+      db.entries = mergeById(db.entries, p.entries);
+      changed(); toast("Backup merged in");
+    }catch(e){ toast("That file isn't a Med Log backup"); }
+  };
+  r.readAsText(f);
+  ev.target.value = "";
+});
+$("btnWipe").addEventListener("click", function(){
+  var n = liveEntries().length;
+  if(!n && !liveMeds().length){ toast("Nothing to erase"); return; }
+  if(!confirm("Erase all medications and " + n + " logged doses on this device?\n\n" +
+              (cfg ? "This will also clear them from the synced copy in GitHub (its history keeps the old versions).\n\n" : "") +
+              "Save a backup first if you might want this later.")) return;
+  var t = now();
+  db.meds.forEach(function(m){ m.deleted = true; m.updatedAt = t; });
+  db.entries.forEach(function(e){ e.deleted = true; e.updatedAt = t; });
+  changed(); toast("All data erased");
+});
+
+/* ============================ rendering ============================ */
+function entryRowHTML(e){
+  return '<button class="row" data-entry="' + e.id + '">' +
+    '<span class="time">' + esc(fmtTime(e.when)) + '</span>' +
+    '<span class="body">' +
+      '<span class="nm"><i class="swatch" style="background:' + colorFor(e.name) + '"></i>' + esc(e.name) + '</span>' +
+      (e.dose ? '<span class="ds">' + esc(e.dose) + '</span>' : '') +
+      (e.notes ? '<span class="nt">' + esc(e.notes) + '</span>' : '') +
+    '</span>' +
+    '<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>' +
+  '</button>';
+}
+function lastTakenFor(name){
+  var best = null, n = name.toLowerCase();
+  liveEntries().forEach(function(e){ if(e.name.toLowerCase() === n && (!best || e.when > best)) best = e.when; });
+  return best;
+}
+function renderQuick(){
+  var grid = $("quickGrid"), meds = liveMeds();
+  if(!meds.length){
+    $("quickHint").textContent = "";
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1"><strong>No medications saved yet</strong>' +
+      'Add the ones you take regularly on the Meds tab and they\'ll appear here for one-tap logging.</div>';
+    return;
+  }
+  $("quickHint").textContent = "tap to log now";
+  grid.innerHTML = meds.map(function(m){
+    var lt = lastTakenFor(m.name);
+    return '<button class="pill-btn" data-med="' + m.id + '">' +
+      '<span class="nm"><i class="swatch" style="background:' + colorFor(m.name) + '"></i>' + esc(m.name) + '</span>' +
+      '<span class="ds">' + esc(m.dose || "no dosage set") + '</span>' +
+      '<span class="last">' + (lt ? 'Last: <b>' + esc(relTime(lt)) + '</b>' : 'Not logged yet') + '</span>' +
+    '</button>';
+  }).join("");
+}
+function renderToday(){
+  var t = dayKey(now());
+  var list = liveEntries().filter(function(e){ return dayKey(e.when) === t; })
+                          .sort(function(a,b){ return b.when - a.when; });
+  $("todayCount").textContent = list.length ? list.length + (list.length===1?" dose":" doses") : "";
+  $("todayList").innerHTML = list.length
+    ? '<div class="rows">' + list.map(entryRowHTML).join("") + '</div>'
+    : '<div class="empty"><strong>Nothing logged today</strong>Tap a medication above, or use "Log a dose" for anything else.</div>';
+}
+function renderHistory(){
+  var list = filtered();
+  $("exportLabel").textContent = list.length
+    ? "Export " + list.length + (list.length===1 ? " entry as CSV" : " entries as CSV") : "Export CSV";
+  if(!list.length){
+    $("historyList").innerHTML = '<div class="empty"><strong>No entries here</strong>' +
+      (liveEntries().length ? 'Try a wider date range or a different search.' : 'Doses you log will show up here.') + '</div>';
+    return;
+  }
+  var groups = [], byKey = {};
+  list.forEach(function(e){
+    var k = dayKey(e.when);
+    if(!byKey[k]){ byKey[k] = { when:e.when, items:[] }; groups.push(byKey[k]); }
+    byKey[k].items.push(e);
+  });
+  $("historyList").innerHTML = groups.map(function(g){
+    return '<div class="daygroup"><div class="dayhead">' + esc(dayLabel(g.when)) +
+      '<span>' + g.items.length + (g.items.length===1?" dose":" doses") + '</span></div>' +
+      '<div class="rows">' + g.items.map(entryRowHTML).join("") + '</div></div>';
+  }).join("");
+}
+function renderMeds(){
+  var meds = liveMeds(), entries = liveEntries();
+  $("medCount").textContent = meds.length ? meds.length + " saved" : "";
+  $("medList").innerHTML = meds.length
+    ? '<div class="rows">' + meds.map(function(m){
+        return '<button class="row" data-editmed="' + m.id + '">' +
+          '<span class="body"><span class="nm"><i class="swatch" style="background:' + colorFor(m.name) + '"></i>' +
+          esc(m.name) + '</span><span class="ds">' + esc(m.dose || "no dosage set") + '</span></span>' +
+          '<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>' +
+        '</button>';
+      }).join("") + '</div>'
+    : '<div class="empty"><strong>No medications saved</strong>Add one below to enable one-tap logging.</div>';
+
+  $("statEntries").textContent = entries.length;
+  var days = {}; entries.forEach(function(e){ days[dayKey(e.when)] = 1; });
+  $("statDays").textContent = Object.keys(days).length;
+  var first = entries.reduce(function(a,e){ return a === null || e.when < a ? e.when : a; }, null);
+  $("statFirst").textContent = first ? new Date(first).toLocaleDateString([], {month:"short", day:"numeric"}) : "—";
+  $("medNames").innerHTML = meds.map(function(m){ return '<option value="' + esc(m.name) + '">'; }).join("");
+}
+function render(){ renderQuick(); renderToday(); renderHistory(); renderMeds(); renderSync(); }
+
+/* delegated clicks */
+document.addEventListener("click", function(ev){
+  if(!ev.target.closest) return;
+  var q = ev.target.closest("[data-med]");
+  if(q){ var m = db.meds.find(function(x){ return x.id === q.dataset.med; }); if(m) logNow(m); return; }
+  var r = ev.target.closest("[data-entry]");
+  if(r){ var e = db.entries.find(function(x){ return x.id === r.dataset.entry; }); if(e) openEntry(e); return; }
+  var em = ev.target.closest("[data-editmed]");
+  if(em){ var mm = db.meds.find(function(x){ return x.id === em.dataset.editmed; }); if(mm) openMed(mm); return; }
+});
+
+/* ============================ timers & lifecycle ============================ */
+setInterval(function(){ if(currentTab === "today" && !document.hidden) renderQuick(); }, 60000);
+setInterval(function(){ if(cfg && !document.hidden && !sync.running) syncNow(); }, 90000);
+document.addEventListener("visibilitychange", function(){
+  if(document.hidden) return;
+  render();
+  if(cfg) syncNow();
+});
+window.addEventListener("online",  function(){ if(cfg) syncNow(); });
+window.addEventListener("offline", function(){ if(cfg) setSync("offline"); });
+
+/* offline support (optional sw.js sitting next to this file) */
+if("serviceWorker" in navigator && location.protocol === "https:"){
+  window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+}
+/* ask iOS to keep our storage rather than evicting it under pressure */
+if(navigator.storage && navigator.storage.persist){
+  navigator.storage.persisted().then(function(p){ if(!p) return navigator.storage.persist(); }).catch(function(){});
+}
+
+/* ============================ boot ============================ */
+load();
+try{ var ls = localStorage.getItem("medlog.lastsync"); if(ls) sync.lastSync = parseInt(ls,10); }catch(e){}
+sync.phase = cfg ? "idle" : "off";
+setTab("today");
+if(!storageOK) toast("This browser is blocking local storage — entries won't be saved");
+if(cfg) syncNow();
+
+window.__medlog = { db: function(){ return db; }, syncNow: syncNow, render: render };
+})();
+</script>
+</body>
+</html>
