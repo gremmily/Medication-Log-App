@@ -169,17 +169,17 @@ nav.tabs svg{width:23px;height:23px}
 /* ---------- toast ---------- */
 .toast{
   position:fixed;left:50%;transform:translate(-50%,140%);
-  bottom:calc(84px + env(safe-area-inset-bottom));z-index:60;
+  bottom:calc(100px + env(safe-area-inset-bottom));z-index:60;
   background:#14161c;color:#fff;border-radius:13px;padding:11px 12px 11px 16px;
   display:flex;align-items:center;gap:14px;font-size:14.5px;font-weight:500;
   box-shadow:0 10px 30px rgba(0,0,0,.3);transition:transform .26s cubic-bezier(.32,.72,0,1);
   max-width:min(420px, calc(100vw - 32px));
-  pointer-events:none;   /* while hidden it sits over the tab bar — never eat taps */
+  pointer-events:none;   /* the box itself never eats taps — only its button does */
 }
-.toast.show{pointer-events:auto}
 @media (prefers-color-scheme: dark){ .toast{background:#f0f2f7;color:#14161c} }
 .toast.show{transform:translate(-50%,0)}
-.toast button{color:var(--accent);font-weight:700;font-size:14.5px;padding:4px 8px;flex-shrink:0}
+.toast button{color:var(--accent);font-weight:700;font-size:14.5px;padding:6px 10px;flex-shrink:0;
+  pointer-events:auto;min-height:32px}
 @media (prefers-color-scheme: dark){ .toast button{color:#2f6fed} }
 
 .hint{font-size:13px;color:var(--muted);margin:8px 4px 0;line-height:1.45}
@@ -648,9 +648,14 @@ function liveEntries(){ return db.entries.filter(function(e){ return !e.deleted;
 function changed(){ save(); render(); markDirty(); }
 
 /* ============================ toast ============================ */
-var toastTimer = null;
+/* A toast must never be able to get stuck. iOS throttles and sometimes drops
+   timers in a home-screen app — especially right after a burst of work like a
+   delete — so a lone setTimeout is not a dependable way to take it down again.
+   Every route below can dismiss it independently. */
+var toastTimer = null, toastUntil = 0;
 function toast(msg, actionLabel, actionFn){
   var el = $("toast"), btn = $("toastAction");
+  var ms = actionLabel ? 4500 : 2200;
   $("toastMsg").textContent = msg;
   if(actionLabel){
     btn.style.display = "";
@@ -658,13 +663,29 @@ function toast(msg, actionLabel, actionFn){
     btn.onclick = function(){ hideToast(); actionFn && actionFn(); };
   } else { btn.style.display = "none"; btn.onclick = null; }
   el.classList.add("show");
+  toastUntil = Date.now() + ms;                       // wall clock, not a timer
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(hideToast, actionLabel ? 5200 : 2600);
+  toastTimer = setTimeout(hideToast, ms);             // 1. the ordinary path
 }
-function hideToast(){ $("toast").classList.remove("show"); clearTimeout(toastTimer); }
+function hideToast(){
+  toastUntil = 0;
+  clearTimeout(toastTimer);
+  $("toast").classList.remove("show");
+}
+// 2. watchdog — survives a dropped or throttled timer
+setInterval(function(){ if(toastUntil && Date.now() > toastUntil) hideToast(); }, 500);
+// 3. any tap outside the toast's own button takes it away immediately
+document.addEventListener("pointerdown", function(ev){
+  if(!toastUntil) return;
+  if(ev.target && ev.target.closest && ev.target.closest("#toastAction")) return;
+  hideToast();
+}, true);
+// 4. never carry one across a screen change or a return to the app
+document.addEventListener("visibilitychange", function(){ if(!document.hidden) hideToast(); });
 
 /* ============================ sheets ============================ */
 function openSheet(id){
+  hideToast();
   $("scrim").classList.add("open"); $(id).classList.add("open");
   document.body.style.overflow = "hidden";
 }
@@ -679,6 +700,8 @@ $("scrim").addEventListener("click", closeSheets);
 var TITLES = { today:"Today", history:"History", meds:"Medications" };
 var currentTab = "today";
 function setTab(tab){
+  hideToast();
+  clearChartHover();
   currentTab = tab;
   document.querySelectorAll(".view").forEach(function(v){ v.classList.remove("active"); });
   $("view-" + tab).classList.add("active");
@@ -1195,6 +1218,7 @@ function barPath(x, y, w, h, r){
 }
 
 var chartState = { bars: [], mode: "day", geom: null, hover: -1 };
+function clearChartHover(){ chartState.hover = -1; }
 
 function renderChart(){
   var card = $("chartCard"), sec = $("chartSection");
@@ -1317,10 +1341,28 @@ function wireChart(card){
     var x = (ev.clientX - rect.left) / (rect.width / g.W);
     return Math.max(0, Math.min(chartState.bars.length - 1, Math.floor((x - g.padL) / g.slot)));
   }
-  svg.addEventListener("pointermove", function(ev){ show(idxFromEvent(ev), ev.clientX); });
-  svg.addEventListener("pointerdown", function(ev){ show(idxFromEvent(ev), ev.clientX); });
-  svg.addEventListener("pointerleave", clear);
+  // On touch, pointerleave never fires — a tapped tooltip would stay up until
+  // the app restarted, exactly the way the toast used to.
+  var tipTimer = null, lastPointer = "mouse";
+  function showFrom(ev){
+    lastPointer = ev.pointerType || "mouse";
+    show(idxFromEvent(ev));
+    clearTimeout(tipTimer);
+    // a touch has no "leave", so give it a lifetime instead
+    if(lastPointer !== "mouse") tipTimer = setTimeout(clear, 2600);
+  }
+  svg.addEventListener("pointermove", showFrom);
+  svg.addEventListener("pointerdown", showFrom);
+  // browsers fire pointerleave the instant a touch ends — honour it for a
+  // mouse only, or a tapped tooltip would vanish before it could be read
+  svg.addEventListener("pointerleave", function(ev){
+    if((ev.pointerType || lastPointer) === "mouse") clear();
+  });
   svg.addEventListener("blur", clear);
+  window.addEventListener("scroll", clear, { passive: true });
+  document.addEventListener("pointerdown", function(ev){
+    if(chartState.hover >= 0 && !(ev.target.closest && ev.target.closest(".viz"))) clear();
+  }, true);
   svg.addEventListener("keydown", function(ev){
     var i = chartState.hover < 0 ? chartState.bars.length - 1 : chartState.hover;
     if(ev.key === "ArrowLeft"){ show(Math.max(0, i-1)); ev.preventDefault(); }

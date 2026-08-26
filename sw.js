@@ -1,6 +1,6 @@
 /* Optional: lets Med Log open with no internet connection.
    Bump CACHE when you replace index.html so phones pick up the new version. */
-const CACHE = "medlog-v3";
+const CACHE = "medlog-v4";
 const ASSETS = ["./", "./index.html"];
 
 self.addEventListener("install", (e) => {
