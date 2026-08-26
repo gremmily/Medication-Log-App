@@ -221,6 +221,94 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;
 .steps li{margin-bottom:5px}
 .steps a{color:var(--accent)}
 
+/* ---------- chart ---------- */
+.viz{--viz-bar:#2f6fed;--viz-bar-dim:#2f6fed99;--viz-grid:var(--border);padding:15px 14px 10px;position:relative}
+@media (prefers-color-scheme: dark){ .viz{--viz-bar:#3987e5;--viz-bar-dim:#3987e599} }
+.viz h3{font-size:14.5px;font-weight:650;margin:0 0 2px}
+.viz .vsub{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.viz svg{display:block;width:100%;height:auto;touch-action:pan-y}
+.viz svg:focus{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.viz .vtip{position:absolute;pointer-events:none;background:var(--text);color:var(--surface);
+  font-size:12px;font-weight:600;padding:6px 9px;border-radius:8px;white-space:nowrap;
+  opacity:0;transition:opacity .12s ease;transform:translate(-50%,-100%);z-index:5;line-height:1.35}
+.viz .vtip.on{opacity:1}
+.viz .vtip small{display:block;font-weight:500;opacity:.75;font-size:11px}
+.vaxis{font-size:10px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.vgrid{stroke:var(--viz-grid);stroke-width:1;shape-rendering:crispEdges}
+.vcap{font-size:10.5px;fill:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* ---------- install banner ---------- */
+.install{position:fixed;left:10px;right:10px;bottom:calc(78px + env(safe-area-inset-bottom));z-index:35;
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:13px 14px;
+  box-shadow:0 8px 30px rgba(0,0,0,.18);display:none;gap:12px;align-items:flex-start}
+.install.on{display:flex}
+/* while the banner floats, let content scroll clear of it */
+body.has-install{padding-bottom:calc(172px + env(safe-area-inset-bottom))}
+.install .txt{flex:1;font-size:13.5px;line-height:1.45}
+.install .txt b{display:block;font-size:14.5px;margin-bottom:3px}
+.install .x{color:var(--muted);font-size:20px;line-height:1;padding:0 2px;flex-shrink:0}
+.install .shr{display:inline-block;vertical-align:-3px;margin:0 2px}
+
+/* ---------- setup link sheet ---------- */
+.linkbox{width:100%;min-height:96px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:12px;line-height:1.5;word-break:break-all;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:11px;padding:11px;resize:vertical}
+.checkrow{display:flex;align-items:center;gap:11px;padding:11px 0;font-size:14.5px}
+.checkrow input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent);flex-shrink:0;margin:0}
+.checkrow span{flex:1}
+
+/* ---------- larger text ---------- */
+:root[data-size="large"] body{font-size:18px}
+:root[data-size="large"] .topbar h1{font-size:25px}
+:root[data-size="large"] .section-head{font-size:14px}
+:root[data-size="large"] .pill-btn{padding:16px 16px}
+:root[data-size="large"] .pill-btn .nm{font-size:18.5px}
+:root[data-size="large"] .pill-btn .ds{font-size:15.5px}
+:root[data-size="large"] .pill-btn .last{font-size:13.5px}
+:root[data-size="large"] .row{padding:16px 15px}
+:root[data-size="large"] .row .nm{font-size:18.5px}
+:root[data-size="large"] .row .ds,
+:root[data-size="large"] .row .nt{font-size:16px}
+:root[data-size="large"] .row .time{font-size:15px;min-width:80px}
+:root[data-size="large"] .btn{padding:16px 18px;font-size:17.5px}
+:root[data-size="large"] .chip{padding:9px 16px;font-size:15.5px}
+:root[data-size="large"] .dayhead{font-size:15.5px}
+:root[data-size="large"] .dayhead span{font-size:14px}
+:root[data-size="large"] .empty{font-size:16px}
+:root[data-size="large"] .hint{font-size:14.5px}
+:root[data-size="large"] label.f .lb{font-size:14px}
+:root[data-size="large"] nav.tabs button{font-size:12.5px}
+:root[data-size="large"] nav.tabs svg{width:26px;height:26px}
+:root[data-size="large"] .synccard .line{font-size:16px}
+:root[data-size="large"] .viz h3{font-size:17px}
+:root[data-size="large"] .viz .vsub{font-size:14px}
+:root[data-size="large"] .toast{font-size:16.5px}
+
+/* ---------- print ---------- */
+#printArea{display:none}
+@media print{
+  body{padding:0;background:#fff;color:#000}
+  body > *{display:none !important}
+  #printArea{display:block !important}
+  @page{margin:16mm 14mm}
+}
+#printArea{font-size:11pt;color:#000;background:#fff;line-height:1.4}
+#printArea h1{font-size:19pt;margin:0 0 3pt;letter-spacing:-.01em}
+#printArea .pmeta{font-size:9.5pt;color:#444;margin-bottom:14pt;
+  padding-bottom:8pt;border-bottom:1.5px solid #000}
+#printArea h2{font-size:12pt;margin:16pt 0 6pt;page-break-after:avoid}
+#printArea table{width:100%;border-collapse:collapse;font-size:9.5pt}
+#printArea th{text-align:left;font-weight:700;border-bottom:1px solid #000;
+  padding:4pt 6pt 4pt 0;white-space:nowrap}
+#printArea td{padding:3.5pt 6pt 3.5pt 0;border-bottom:1px solid #ddd;vertical-align:top}
+#printArea tr{page-break-inside:avoid}
+#printArea thead{display:table-header-group}
+#printArea .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+#printArea .mono{font-variant-numeric:tabular-nums;white-space:nowrap}
+#printArea .pfoot{margin-top:16pt;font-size:8.5pt;color:#555;
+  border-top:1px solid #ccc;padding-top:6pt}
+#printArea .pnote{color:#333}
+
 </style>
 </head>
 <body>
@@ -265,12 +353,21 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;
       </div>
     </div>
 
+    <div class="section" id="chartSection">
+      <div class="card viz" id="chartCard"></div>
+    </div>
+
     <div class="section">
       <button class="btn full primary" id="btnExport">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7.5 10.5 12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <span id="exportLabel">Export CSV</span>
       </button>
       <p class="hint">Exports exactly what's shown below. Opens in Excel, Numbers or Google Sheets.</p>
+      <button class="btn full ghost" id="btnPrint" style="margin-top:10px">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8V3h10v5M7 18H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/></svg>
+        Printable summary
+      </button>
+      <p class="hint">A one-page report for an appointment. On iPhone, choose Share &rarr; Save to Files to keep it as a PDF.</p>
     </div>
 
     <div class="section" id="historyList"></div>
@@ -296,6 +393,16 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;
     </div>
 
     <div class="section">
+      <div class="section-head"><span>Display</span></div>
+      <div class="card" style="padding:2px 15px">
+        <label class="checkrow"><input type="checkbox" id="prefLarge"><span>Larger text and bigger buttons</span></label>
+      </div>
+      <label class="f" style="margin-top:13px"><span class="lb">Name on the printed summary</span>
+        <input type="text" id="prefName" autocomplete="off" autocapitalize="words" placeholder="optional">
+      </label>
+    </div>
+
+    <div class="section">
       <div class="section-head"><span>Data</span></div>
       <div class="card stat">
         <div><div class="n" id="statEntries">0</div><div class="l">doses logged</div></div>
@@ -312,6 +419,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;
     </div>
   </section>
 </main>
+
+<div class="install" id="installBanner">
+  <div class="txt"><b>Add this to your Home Screen</b>Tap the Share button<svg class="shr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8.5 7.5 12 4l3.5 3.5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>at the bottom of Safari, then choose &ldquo;Add to Home Screen&rdquo;.</div>
+  <button class="x" id="installX" aria-label="Dismiss">&times;</button>
+</div>
 
 <nav class="tabs">
   <button data-tab="today" class="on">
@@ -408,6 +520,27 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;
     <button class="btn danger full" id="syncOff">Turn off sync on this device</button>
   </div>
 </div>
+
+<!-- setup link sheet -->
+<div class="sheet" id="linkSheet">
+  <div class="grab"></div>
+  <h2>Set up another device</h2>
+  <p class="hint" style="margin:0 0 14px">This link carries the repository, the file path and the access token. Whoever opens it in Safari gets the app fully connected &mdash; nothing to type, and the details are wiped from their address bar straight away.</p>
+  <label class="checkrow"><input type="checkbox" id="lnkLarge"><span>Start that device in larger text</span></label>
+  <label class="f" style="margin-top:10px"><span class="lb">Name on their printed summary</span>
+    <input type="text" id="lnkName" autocapitalize="words" autocomplete="off" placeholder="optional">
+  </label>
+  <label class="f"><span class="lb">The link</span>
+    <textarea class="linkbox" id="lnkOut" readonly></textarea>
+  </label>
+  <p class="warn">Treat this like a password. Send it one-to-one, ask them to tell you when it works, then delete the message from both sides. Give each person their own token so you can revoke one without disturbing the other.</p>
+  <div class="sheet-actions" style="margin-top:14px">
+    <button class="btn ghost" id="lnkClose">Close</button>
+    <button class="btn primary" id="lnkCopy">Copy link</button>
+  </div>
+</div>
+
+<div id="printArea"></div>
 
 <div class="toast" id="toast"><span id="toastMsg"></span><button id="toastAction" style="display:none"></button></div>
 <script>
@@ -525,7 +658,7 @@ function openSheet(id){
 }
 function closeSheets(){
   $("scrim").classList.remove("open");
-  ["entrySheet","medSheet","syncSheet"].forEach(function(s){ $(s).classList.remove("open"); });
+  ["entrySheet","medSheet","syncSheet","linkSheet"].forEach(function(s){ $(s).classList.remove("open"); });
   document.body.style.overflow = "";
 }
 $("scrim").addEventListener("click", closeSheets);
@@ -842,8 +975,10 @@ function renderSyncCard(){
     '<div class="line"><span>File</span><span>' + esc(cfg.branch + " / " + cfg.path) + '</span></div>' +
     '<div class="line"><span>Last synced</span><span>' + (sync.lastSync ? esc(relTime(sync.lastSync)) : "never") + '</span></div>';
   links.innerHTML = '<button class="link" id="btnSyncNow">Sync now</button>' +
+                    '<button class="link" id="btnSyncLink">Set up another device</button>' +
                     '<button class="link" id="btnSyncEdit">Change settings</button>';
   $("btnSyncNow").onclick  = function(){ syncNow({manual:true}); };
+  $("btnSyncLink").onclick = function(){ openLinkSheet(); };
   $("btnSyncEdit").onclick = function(){ openSyncSheet(); };
 }
 function openSyncSheet(){
@@ -877,6 +1012,305 @@ $("syncOff").addEventListener("click", function(){
   cfg = null; saveCfg(); sync.lastSync = null; sync.pending = false;
   setSync("off"); closeSheets(); toast("Sync turned off on this device");
 });
+
+
+/* ======================================================================
+   PREFERENCES — per-device display settings. Can arrive via a setup link
+   so a second device needs no typing at all.
+   ====================================================================== */
+var PREF_KEY = "medlog.prefs";
+var prefs = { largeText: false, name: "" };
+function loadPrefs(){
+  try{ var p = JSON.parse(localStorage.getItem(PREF_KEY) || "{}");
+       if(p && typeof p === "object") prefs = Object.assign(prefs, p); }catch(e){}
+}
+function savePrefs(){ try{ localStorage.setItem(PREF_KEY, JSON.stringify(prefs)); }catch(e){} }
+function applyPrefs(){
+  document.documentElement.setAttribute("data-size", prefs.largeText ? "large" : "normal");
+}
+
+/* ======================================================================
+   SETUP LINK — everything a second device needs, in one tappable URL.
+   The payload rides in the fragment, which browsers never send to the
+   server, and is wiped from the address bar the moment it is read.
+   ====================================================================== */
+function b64url(s){ return b64enc(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }
+function unb64url(s){ return b64dec(s.replace(/-/g,"+").replace(/_/g,"/")); }
+
+function makeSetupLink(withLarge, withName){
+  var p = { r: cfg.repo, b: cfg.branch, p: cfg.path, t: cfg.token };
+  if(withLarge) p.L = 1;
+  if(withName)  p.n = withName;
+  return location.origin + location.pathname + "#s=" + b64url(JSON.stringify(p));
+}
+function applySetupLink(){
+  var m = /[#&]s=([A-Za-z0-9\-_]+)/.exec(location.hash || "");
+  if(!m) return false;
+  var p;
+  try{ p = JSON.parse(unb64url(m[1])); }catch(e){ return false; }
+  if(!p || !p.r || !p.t) return false;
+  cfg = { repo: p.r, branch: p.b || "main", path: p.p || "med-log.json", token: p.t };
+  saveCfg();
+  if(p.n){ prefs.name = String(p.n).slice(0,60); }
+  if(p.L){ prefs.largeText = true; }
+  savePrefs(); applyPrefs();
+  try{ history.replaceState(null, "", location.pathname + location.search); }
+  catch(e){ location.hash = ""; }
+  return true;
+}
+
+/* ======================================================================
+   CHART — doses per day. One series, so no legend: the title says what is
+   plotted. The history list underneath is the table view of the same data.
+   ====================================================================== */
+function startOfDay(ms){ var d = new Date(ms); d.setHours(0,0,0,0); return d.getTime(); }
+function addDays(ms, n){ var d = new Date(ms); d.setDate(d.getDate()+n); return d.getTime(); }
+
+function buckets(list){
+  var to = startOfDay(now()), from;
+  if(range === "all"){
+    var min = list.length ? list.reduce(function(a,e){ return Math.min(a, e.when); }, Infinity) : to;
+    from = startOfDay(min);
+  } else {
+    from = addDays(to, -(parseInt(range,10) - 1));
+  }
+  if(from > to) from = to;
+  var span = Math.round((to - from) / 864e5) + 1;
+  var mode = span <= 31 ? "day" : (span <= 126 ? "week" : "month");
+
+  var edges = [], cur = from;
+  if(mode === "day"){
+    while(cur <= to){ edges.push(cur); cur = addDays(cur, 1); }
+  } else if(mode === "week"){
+    cur = addDays(from, -new Date(from).getDay());          // back to Sunday
+    while(cur <= to){ edges.push(cur); cur = addDays(cur, 7); }
+  } else {
+    var d = new Date(from); d.setDate(1); cur = startOfDay(d.getTime());
+    while(cur <= to){ edges.push(cur); var n = new Date(cur); n.setMonth(n.getMonth()+1); cur = startOfDay(n.getTime()); }
+  }
+  var bars = edges.map(function(start, i){
+    var end = i+1 < edges.length ? edges[i+1] : addDays(to, 1);
+    return { start: start, end: end, count: 0 };
+  });
+  list.forEach(function(e){
+    for(var i = bars.length - 1; i >= 0; i--){
+      if(e.when >= bars[i].start){ if(e.when < bars[i].end) bars[i].count++; break; }
+    }
+  });
+  return { bars: bars, mode: mode, from: from, to: to };
+}
+function bucketLabel(b, mode){
+  var d = new Date(b.start);
+  if(mode === "day")   return d.toLocaleDateString([], {month:"short", day:"numeric"});
+  if(mode === "week")  return "Week of " + d.toLocaleDateString([], {month:"short", day:"numeric"});
+  return d.toLocaleDateString([], {month:"long", year:"numeric"});
+}
+function bucketTick(b, mode){
+  var d = new Date(b.start);
+  if(mode === "month") return d.toLocaleDateString([], {month:"short"});
+  return d.toLocaleDateString([], {month:"short", day:"numeric"});
+}
+function barPath(x, y, w, h, r){
+  r = Math.max(0, Math.min(r, w/2, h));
+  if(h <= 0.6) return "";
+  return "M" + x + "," + (y+h) + "V" + (y+r) +
+         "a" + r + "," + r + " 0 0 1 " + r + "," + (-r) +
+         "h" + (w - 2*r) +
+         "a" + r + "," + r + " 0 0 1 " + r + "," + r +
+         "V" + (y+h) + "Z";
+}
+
+var chartState = { bars: [], mode: "day", geom: null, hover: -1 };
+
+function renderChart(){
+  var card = $("chartCard"), sec = $("chartSection");
+  var list = filtered();
+  if(!list.length){ sec.style.display = "none"; return; }
+  sec.style.display = "";
+
+  var bk = buckets(list);
+  chartState.bars = bk.bars; chartState.mode = bk.mode;
+
+  var n = bk.bars.length;
+  var total = list.length;
+  var max = bk.bars.reduce(function(a,b){ return Math.max(a, b.count); }, 0) || 1;
+  var empties = bk.bars.filter(function(b){ return !b.count; }).length;
+  var unit = bk.mode === "day" ? "day" : (bk.mode === "week" ? "week" : "month");
+  var avg = total / n;
+
+  var big = prefs.largeText;
+  var W = Math.max(240, card.clientWidth - 28);
+  var padL = big ? 30 : 26, padR = 6, padT = 18, padB = big ? 26 : 21;
+  var H = (big ? 132 : 112) + padT + padB;
+  var plotW = W - padL - padR, plotH = H - padT - padB;
+
+  var slot = plotW / n;
+  var barW = Math.max(2, Math.min(24, slot - (slot > 6 ? 2 : 1)));   // 2px surface gap
+  var yFor = function(c){ return padT + plotH - (c / max) * plotH; };
+
+  // y ticks: 0, and clean steps up to max
+  var step = max <= 3 ? 1 : Math.ceil(max / 3);
+  var ticks = []; for(var t = 0; t <= max; t += step) ticks.push(t);
+  if(ticks[ticks.length-1] !== max) ticks.push(max);
+
+  var maxIdx = bk.bars.reduce(function(bi, b, i){ return b.count > bk.bars[bi].count ? i : bi; }, 0);
+
+  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+            '" role="img" tabindex="0" aria-label="Doses per ' + unit + ', ' + total + ' total">';
+  ticks.forEach(function(t){
+    var y = yFor(t);
+    svg += '<line class="vgrid" x1="' + padL + '" y1="' + y.toFixed(1) + '" x2="' + (W - padR) + '" y2="' + y.toFixed(1) + '"/>';
+    svg += '<text class="vaxis" x="' + (padL - 6) + '" y="' + (y + 3.5).toFixed(1) + '" text-anchor="end">' + t + '</text>';
+  });
+  bk.bars.forEach(function(b, i){
+    var x = padL + i*slot + (slot - barW)/2;
+    var h = (b.count / max) * plotH;
+    if(b.count > 0) svg += '<path d="' + barPath(x, yFor(b.count), barW, h, 4) +
+      '" fill="var(--viz-bar)" data-bar="' + i + '"/>';
+  });
+  // one direct label: the busiest bucket
+  if(bk.bars[maxIdx].count > 0 && n <= 40){
+    var lx = padL + maxIdx*slot + slot/2;
+    svg += '<text class="vcap" x="' + lx.toFixed(1) + '" y="' + (yFor(max) - 5).toFixed(1) +
+           '" text-anchor="middle">' + max + '</text>';
+  }
+  // x ticks: at most 5, evenly spaced, never colliding
+  var every = Math.max(1, Math.ceil(n / 5));
+  bk.bars.forEach(function(b, i){
+    if(i % every !== 0 && i !== n-1) return;
+    if(i !== n-1 && (n-1 - i) < every*0.6) return;          // avoid crowding the last tick
+    var x = padL + i*slot + slot/2;
+    var anchor = i === 0 ? "start" : (i === n-1 ? "end" : "middle");
+    var tx = i === 0 ? padL : (i === n-1 ? W - padR : x);
+    svg += '<text class="vaxis" x="' + tx.toFixed(1) + '" y="' + (H - (big ? 8 : 6)) +
+           '" text-anchor="' + anchor + '">' + esc(bucketTick(b, bk.mode)) + '</text>';
+  });
+  svg += '<rect id="vhit" x="' + padL + '" y="' + padT + '" width="' + plotW + '" height="' + plotH +
+         '" fill="transparent"/></svg>';
+
+  var sub = total + (total===1 ? " dose" : " doses") + " · " +
+            (Math.round(avg*10)/10) + " per " + unit +
+            (empties ? " · " + empties + " " + (unit==="day"?"day":unit) + (empties===1?"":"s") + " with none" : "");
+
+  card.innerHTML = '<h3>Doses per ' + unit + '</h3><div class="vsub">' + esc(sub) + '</div>' +
+                   svg + '<div class="vtip" id="vtip"></div>';
+
+  chartState.geom = { padL: padL, padT: padT, plotW: plotW, plotH: plotH, slot: slot, W: W, H: H, max: max };
+  wireChart(card);
+}
+
+function wireChart(card){
+  var svg = card.querySelector("svg"), tip = card.querySelector(".vtip");
+  if(!svg) return;
+  var g = chartState.geom;
+
+  function show(i, clientX){
+    var b = chartState.bars[i]; if(!b) return;
+    chartState.hover = i;
+    svg.querySelectorAll("[data-bar]").forEach(function(p){
+      p.setAttribute("fill", (+p.dataset.bar === i) ? "var(--viz-bar)" : "var(--viz-bar-dim)");
+    });
+    tip.innerHTML = b.count + (b.count===1 ? " dose" : " doses") +
+                    "<small>" + esc(bucketLabel(b, chartState.mode)) + "</small>";
+    // measure the real rendered mark — the svg scales to its container, so
+    // viewBox arithmetic alone would put the tip in the wrong place
+    var cardRect = card.getBoundingClientRect();
+    var svgRect  = svg.getBoundingClientRect();
+    var barEl    = svg.querySelector('[data-bar="' + i + '"]');
+    var markRect = barEl ? barEl.getBoundingClientRect() : null;
+    var scale    = svgRect.width / g.W;
+    var cx = markRect ? (markRect.left + markRect.width/2 - cardRect.left)
+                      : (svgRect.left - cardRect.left) + (g.padL + i*g.slot + g.slot/2) * scale;
+    var capY = markRect ? (markRect.top - cardRect.top)
+                        : (svgRect.top - cardRect.top) + (g.padT + g.plotH) * scale;
+    tip.style.left = Math.max(54, Math.min(cardRect.width - 54, cx)) + "px";
+    if(capY < 48){                        // tall bar: hang the tip below the cap
+      tip.style.transform = "translate(-50%, 0)";
+      tip.style.top = (capY + 8) + "px";
+    } else {                              // normal: sit above the cap
+      tip.style.transform = "translate(-50%, -100%)";
+      tip.style.top = (capY - 8) + "px";
+    }
+    tip.classList.add("on");
+  }
+  function clear(){
+    chartState.hover = -1;
+    tip.classList.remove("on");
+    svg.querySelectorAll("[data-bar]").forEach(function(p){ p.setAttribute("fill", "var(--viz-bar)"); });
+  }
+  function idxFromEvent(ev){
+    var rect = svg.getBoundingClientRect();
+    var x = (ev.clientX - rect.left) / (rect.width / g.W);
+    return Math.max(0, Math.min(chartState.bars.length - 1, Math.floor((x - g.padL) / g.slot)));
+  }
+  svg.addEventListener("pointermove", function(ev){ show(idxFromEvent(ev), ev.clientX); });
+  svg.addEventListener("pointerdown", function(ev){ show(idxFromEvent(ev), ev.clientX); });
+  svg.addEventListener("pointerleave", clear);
+  svg.addEventListener("blur", clear);
+  svg.addEventListener("keydown", function(ev){
+    var i = chartState.hover < 0 ? chartState.bars.length - 1 : chartState.hover;
+    if(ev.key === "ArrowLeft"){ show(Math.max(0, i-1)); ev.preventDefault(); }
+    else if(ev.key === "ArrowRight"){ show(Math.min(chartState.bars.length-1, i+1)); ev.preventDefault(); }
+    else if(ev.key === "Escape"){ clear(); }
+  });
+}
+var resizeTimer = null;
+window.addEventListener("resize", function(){
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function(){ if(currentTab === "history") renderChart(); }, 180);
+});
+
+/* ======================================================================
+   PRINTABLE SUMMARY
+   ====================================================================== */
+function rangeLabel(){
+  if(range === "all") return "Complete history";
+  return "Last " + range + " days";
+}
+function buildPrint(){
+  var list = filtered().slice().sort(function(a,b){ return a.when - b.when; });
+  if(!list.length){ toast("Nothing to print in this view"); return false; }
+
+  var byMed = {}, order = [];
+  list.forEach(function(e){
+    var k = e.name.toLowerCase();
+    if(!byMed[k]){ byMed[k] = { name: e.name, doses: [], oses: {} }; order.push(k); }
+    byMed[k].doses.push(e);
+    if(e.dose) byMed[k].oses[e.dose] = 1;
+  });
+  order.sort(function(a,b){ return byMed[a].name.localeCompare(byMed[b].name); });
+
+  var q = $("search").value.trim();
+  var meta = [];
+  if(prefs.name) meta.push("<b>" + esc(prefs.name) + "</b>");
+  meta.push(esc(rangeLabel()) + " — " + esc(fmtDate(list[0].when)) + " to " + esc(fmtDate(list[list.length-1].when)));
+  if(q) meta.push("filtered to &ldquo;" + esc(q) + "&rdquo;");
+  meta.push("generated " + esc(fmtDate(now())));
+
+  var summary = order.map(function(k){
+    var m = byMed[k], ds = m.doses;
+    return "<tr><td>" + esc(m.name) + "</td><td>" + esc(Object.keys(m.oses).join("; ") || "—") +
+      "</td><td class='num'>" + ds.length + "</td><td>" + esc(fmtDate(ds[0].when)) +
+      "</td><td>" + esc(fmtDate(ds[ds.length-1].when)) + "</td></tr>";
+  }).join("");
+
+  var rows = list.map(function(e){
+    return "<tr><td class='mono'>" + esc(dayKey(e.when)) + "</td><td class='mono'>" + esc(fmtTime(e.when)) +
+      "</td><td>" + esc(e.name) + "</td><td>" + esc(e.dose || "—") +
+      "</td><td class='pnote'>" + esc(e.notes || "") + "</td></tr>";
+  }).join("");
+
+  $("printArea").innerHTML =
+    "<h1>Medication Log</h1><div class='pmeta'>" + meta.join(" &nbsp;·&nbsp; ") + "</div>" +
+    "<h2>Summary by medication</h2>" +
+    "<table><thead><tr><th>Medication</th><th>Dosage</th><th class='num'>Doses</th>" +
+    "<th>First</th><th>Last</th></tr></thead><tbody>" + summary + "</tbody></table>" +
+    "<h2>Full log — " + list.length + (list.length===1 ? " dose" : " doses") + "</h2>" +
+    "<table><thead><tr><th>Date</th><th>Time</th><th>Medication</th><th>Dosage</th><th>Notes</th></tr></thead>" +
+    "<tbody>" + rows + "</tbody></table>" +
+    "<div class='pfoot'>Self-reported log kept in the Med Log app. Times are as recorded on the device.</div>";
+  return true;
+}
 
 /* ============================ history filters ============================ */
 var range = "7";
@@ -969,6 +1403,79 @@ $("btnWipe").addEventListener("click", function(){
   changed(); toast("All data erased");
 });
 
+
+/* ======================================================================
+   DISPLAY PREFS / PRINT / SETUP-LINK / INSTALL BANNER — wiring
+   ====================================================================== */
+$("prefLarge").addEventListener("change", function(){
+  prefs.largeText = this.checked; savePrefs(); applyPrefs();
+  if(currentTab === "history") setTimeout(renderChart, 30);
+  toast(prefs.largeText ? "Larger text on" : "Larger text off");
+});
+$("prefName").addEventListener("input", function(){
+  prefs.name = this.value.slice(0,60); savePrefs();
+});
+function syncPrefInputs(){
+  $("prefLarge").checked = !!prefs.largeText;
+  if(document.activeElement !== $("prefName")) $("prefName").value = prefs.name || "";
+}
+
+$("btnPrint").addEventListener("click", function(){
+  if(!buildPrint()) return;
+  setTimeout(function(){ window.print(); }, 60);
+});
+
+/* ---- setup link ---- */
+function refreshLink(){
+  if(!cfg){ $("lnkOut").value = ""; return; }
+  $("lnkOut").value = makeSetupLink($("lnkLarge").checked, $("lnkName").value.trim());
+}
+function openLinkSheet(){
+  if(!cfg){ toast("Turn on sync first, then you can share it"); return; }
+  $("lnkLarge").checked = false;
+  $("lnkName").value = "";
+  refreshLink();
+  openSheet("linkSheet");
+}
+$("lnkLarge").addEventListener("change", refreshLink);
+$("lnkName").addEventListener("input", refreshLink);
+$("lnkClose").addEventListener("click", closeSheets);
+$("lnkCopy").addEventListener("click", async function(){
+  var v = $("lnkOut").value;
+  if(!v) return;
+  try{
+    await navigator.clipboard.writeText(v);
+    toast("Link copied — send it to them, then delete the message");
+  }catch(e){
+    $("lnkOut").focus(); $("lnkOut").select();
+    toast("Press and hold the link to copy it");
+  }
+});
+
+/* ---- add to home screen ---- */
+function isIOS(){
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+         (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+function isStandalone(){
+  return window.navigator.standalone === true ||
+         (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches);
+}
+function maybeShowInstall(){
+  var dismissed = false;
+  try{ dismissed = localStorage.getItem("medlog.installed") === "1"; }catch(e){}
+  if(dismissed || isStandalone() || !isIOS()) return;
+  setTimeout(function(){
+    $("installBanner").classList.add("on");
+    document.body.classList.add("has-install");
+  }, 1400);
+}
+$("installX").addEventListener("click", function(){
+  $("installBanner").classList.remove("on");
+  document.body.classList.remove("has-install");
+  try{ localStorage.setItem("medlog.installed", "1"); }catch(e){}
+});
+
 /* ============================ rendering ============================ */
 function entryRowHTML(e){
   return '<button class="row" data-entry="' + e.id + '">' +
@@ -1054,7 +1561,8 @@ function renderMeds(){
   $("statFirst").textContent = first ? new Date(first).toLocaleDateString([], {month:"short", day:"numeric"}) : "—";
   $("medNames").innerHTML = meds.map(function(m){ return '<option value="' + esc(m.name) + '">'; }).join("");
 }
-function render(){ renderQuick(); renderToday(); renderHistory(); renderMeds(); renderSync(); }
+function render(){ renderQuick(); renderToday(); renderHistory(); renderMeds(); renderSync(); syncPrefInputs();
+  if(currentTab === "history") renderChart(); }
 
 /* delegated clicks */
 document.addEventListener("click", function(ev){
@@ -1089,10 +1597,15 @@ if(navigator.storage && navigator.storage.persist){
 
 /* ============================ boot ============================ */
 load();
+loadPrefs();
+var arrivedByLink = applySetupLink();
+applyPrefs();
 try{ var ls = localStorage.getItem("medlog.lastsync"); if(ls) sync.lastSync = parseInt(ls,10); }catch(e){}
 sync.phase = cfg ? "idle" : "off";
 setTab("today");
 if(!storageOK) toast("This browser is blocking local storage — entries won't be saved");
+if(arrivedByLink) toast("Backup connected — nothing else to set up");
+maybeShowInstall();
 if(cfg) syncNow();
 
 window.__medlog = { db: function(){ return db; }, syncNow: syncNow, render: render };

@@ -1,76 +1,63 @@
-# Med Log — setup
+# Med Log
 
-Two files. `index.html` is the whole app; `sw.js` is optional and only adds offline support.
+A private medication log that runs as a web app on an iPhone home screen. No app store, no account, no server of ours. Data lives on the device and is backed up to a private GitHub repo you own.
 
-There are **two separate repos** in this setup, and it matters that they stay separate:
+## The two repos
 
-| | what it holds | visibility |
+| | holds | visibility |
 |---|---|---|
-| the **app** repo | `index.html`, `sw.js` | public (GitHub Pages needs it on the free plan) |
-| the **data** repo | your log, as one JSON file | **private** |
+| **app** repo | `index.html`, `sw.js` | public (GitHub Pages needs it on the free plan) |
+| **data** repo | the log, as one JSON file | **private** |
 
-The app repo is just the program — no medical data ever goes in it.
-
----
-
-## 1. Publish the app
-
-Upload `index.html` and `sw.js` side by side into a public repo, then Settings → Pages → Source: "Deploy from a branch" → `main` → `/ (root)`. In a minute or two the app is live at `https://YOURNAME.github.io/REPONAME/`.
-
-The URL must be **HTTPS** (iOS won't persist data otherwise) and should stay **stable** — your local data is keyed to the exact address.
-
-## 2. Add it to your iPhone
-
-Open the URL in **Safari** (not Chrome), tap **Share** → **Add to Home Screen**. It gets its own icon and opens full-screen.
-
-At this point it works, but only stores data on that phone. Step 3 fixes that.
-
-## 3. Turn on sync
-
-**Create the private data repo:** [github.com/new](https://github.com/new) → name it something like `med-log-data` → set it to **Private** → Create. Leave it empty; the app creates the file itself. (Tick "Add a README" if you'd rather not stare at an empty-repo page.)
-
-**Create a scoped token:** [Settings → Developer settings → Personal access tokens → Fine-grained tokens](https://github.com/settings/personal-access-tokens/new).
-
-- **Repository access** → Only select repositories → pick just `med-log-data`
-- **Permissions → Repository permissions** → **Contents: Read and write**. Nothing else — no other permission is needed and none should be granted.
-- **Expiration** — GitHub will make you re-issue it when it lapses. Pick a long window and note the date, or the app will start showing "Sync error" out of nowhere.
-
-Copy the token (it's shown once).
-
-**Connect:** in the app, Meds tab → **Set up sync** → paste `YOURNAME/med-log-data`, branch `main`, path `med-log.json`, and the token → Connect.
-
-## 4. Add your PC
-
-Open the same URL in your desktop browser, go to Meds → Set up sync, and enter the *same* four values. Both devices now read and write the same file.
-
-You can add a doses from either one. If both have been edited, the newer edit of each individual entry wins — you won't lose one device's work because the other synced later.
+No medical data ever goes in the app repo.
 
 ---
+
+## Setting up the first device
+
+1. **Publish the app.** Push `index.html` and `sw.js`, then Settings → Pages → Deploy from a branch → `main` → `/ (root)`. The app appears at `https://YOURNAME.github.io/REPONAME/`. HTTPS is required and the URL must stay stable.
+2. **Add to the phone.** Open the URL in **Safari**, tap Share → **Add to Home Screen**. The app shows a banner reminding you to do this.
+3. **Create the private data repo.** [github.com/new](https://github.com/new), name it e.g. `med-log-data`, set **Private**. Leave it empty — the app creates the file.
+4. **Create a token.** [Fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) → Repository access: only `med-log-data` → Permissions → Repository permissions → **Contents: Read and write**, nothing else. Note the expiry date; when it lapses the app just starts saying "Sync error".
+5. **Connect.** Meds tab → Set up sync → paste the repo, branch `main`, path `med-log.json`, and the token.
+
+## Setting up any device after that — no typing
+
+On a device that already syncs: **Meds → Set up another device**. That builds a link carrying the repo details and token. Send it to the person, they open it in Safari, and the app configures itself and wipes the details out of the address bar. They add it to their home screen and they're done — they never see a token, and any medications already in the log arrive on their first sync.
+
+The link can also pre-set **larger text** and the **name for their printed summary**, so the phone arrives set up the way you want it.
+
+**Treat the link like a password.** It grants read/write to that one private repo and nothing else. Send it one-to-one, confirm it worked, then delete the message on both sides. Give each person their own token so you can revoke one without breaking the other.
+
+## Using it
+
+- **Today** — saved medications as one-tap buttons showing when each was last taken. "Log a dose" opens the full form for anything one-off or backdated.
+- **History** — a doses-per-day chart, date-range filters, search, and every entry tappable to edit or delete. The chart switches to weekly bars past a month and monthly past four, so it stays readable.
+- **Meds** — the saved medication list, display settings, sync status, and data tools.
+
+## Getting data out
+
+- **Export CSV** — exactly what's currently filtered. Columns: Date, Time, Medication, Dosage, Notes, ISO timestamp.
+- **Printable summary** — a one-page report: totals per medication with first and last dose, then the full chronological log. On iPhone the print sheet offers Share → Save to Files to keep it as a PDF.
 
 ## How sync behaves
 
-The chip in the top-right is the whole status display:
+The chip top-right is the whole status display: **Synced**, **Pending**, **Syncing…**, **Offline**, **Sync error**. Tap it for details and to retry.
 
-- **Synced** — everything is in the repo
-- **Pending** — you just made a change; it pushes a couple of seconds later
-- **Syncing…** / **Offline** / **Sync error** — tap it to jump to details and retry
+Changes push a few seconds after you make them. The app pulls on open, on refocus, and every 90 seconds while on screen. Log a dose with no signal and it saves locally and goes up later.
 
-Changes push a few seconds after you make them, and the app pulls when you open it, when you switch back to it, and every 90 seconds while it's on screen. Log a dose in a dead zone and it saves locally and goes up when you have signal again.
-
-Deleting an entry leaves a hidden tombstone in the file so the deletion reaches your other device rather than the entry reappearing. That's why the JSON has slightly more records than the app shows.
+Each record carries a timestamp, so the newer edit of any given entry wins — a device syncing late can't overwrite the other's work. Deletions leave a tombstone in the file so they actually propagate; that's why the JSON holds a few more records than the app shows.
 
 ## Your data
 
-The private repo is the durable copy — and because it's git, every change is a commit, so you can see the file's whole history on GitHub and recover an earlier version if something goes wrong.
+The private repo is the durable copy, and because it's git you get a full version history — every change is a commit you can inspect or roll back on GitHub.
 
-The **Save backup file** button on the Meds tab still works and is worth using occasionally, especially before you change anything about the setup. **Restore from backup** merges rather than overwrites — nothing already present is lost.
+**Save backup file** on the Meds tab writes a JSON snapshot; **Restore from backup** merges it back without losing anything already present. Worth doing before you change the setup.
 
-A caution about the token: it lives in that browser's storage on that device. It only reaches one private repo, but anyone who can unlock your phone could read it out. If you lose the device, revoke the token on GitHub and the access is gone.
+The app also asks iOS for persistent storage so Safari is less likely to evict the local copy.
 
-## Export
+## Developing
 
-History tab → export gives you a CSV of exactly what's currently filtered. Columns: Date, Time, Medication, Dosage, Notes, ISO timestamp.
+Line endings are normalised by `.gitattributes` — real diffs only.
 
-## Updating the app later
-
-Replace `index.html` in the app repo. Your data is untouched — it lives in the other repo and in browser storage, not in the file. If you're using `sw.js`, also bump `const CACHE = "medlog-v1"` to `"medlog-v2"` so phones fetch the new version rather than the cached one.
+Updating the app is just replacing `index.html`; the data lives elsewhere and is untouched. If you're using `sw.js`, bump `const CACHE = "medlog-v1"` to `v2` so phones fetch the new version instead of the cached one.
