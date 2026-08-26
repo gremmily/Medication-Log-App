@@ -27,6 +27,14 @@ On a device that already syncs: **Meds → Set up another device**. That builds 
 
 The link can also pre-set **larger text** and the **name for their printed summary**, so the phone arrives set up the way you want it.
 
+### Why the link, and not just typing it in
+
+iOS gives a home-screen web app **its own storage container** — nothing set up in Safari carries into the installed app — and it launches that app at the manifest's `start_url` rather than the page you installed from. So the app builds its manifest at runtime with the setup payload still attached to `start_url`, and deliberately leaves the payload in the address bar until it is running standalone. Either route (manifest `start_url`, or the page URL on older iOS) carries the settings across the install.
+
+If both fail, the app opens with a **"Not backed up yet"** card: paste the link into it and it connects. That's also the recovery path for a device that was installed before this fix — no need to delete and re-add the icon.
+
+A link carrying settings that differ from what a device already has never overwrites silently; it offers the change and waits. That stops a stale link saved inside a home-screen icon from reinstating a revoked token on every launch.
+
 **Treat the link like a password.** It grants read/write to that one private repo and nothing else. Send it one-to-one, confirm it worked, then delete the message on both sides. Give each person their own token so you can revoke one without breaking the other.
 
 ## Using it
