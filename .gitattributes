@@ -1,0 +1,2 @@
+# Keep line endings consistent so diffs show real changes only
+* text=auto eol=lf
